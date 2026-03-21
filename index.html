@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OPCG — L'Oracle du Pays de Château-Gontier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --orange:     #f26522;
+      --orange2:    #e05510;
+      --jaune:      #ffc107;
+      --jaune-bg:   #fff8e1;
+      --orange-bg:  #fff3ee;
+      --blanc:      #ffffff;
+      --fond:       #faf7f4;
+      --texte:      #2c2418;
+      --gris:       #9e9085;
+      --border:     #ede7df;
+      --bleu-eau:   #3b9ec2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--blanc);
+      color: var(--texte);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--blanc);
+      border-bottom: 2px solid var(--border);
+      padding: 0 2rem;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-badge {
+      background: var(--orange);
+      color: white;
+      font-weight: 900;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo-text {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--texte);
+    }
+
+    .nav-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--bleu-eau);
+      background: #e8f5fb;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--fond);
+      padding: 3.5rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--orange-bg);
+      color: var(--orange);
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 0.45rem 1.1rem;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: blink 1.8s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.25; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--texte);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--gris);
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* ── LÉON ── */
+    .leon-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: -3.5rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .leon-bubble {
+      position: absolute;
+      top: -2.2rem;
+      right: calc(50% - 4rem);
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 16px 16px 16px 4px;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--texte);
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .leon-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 14px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid white;
+    }
+
+    /* ── CHAT ZONE ── */
+    .chat-zone {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .chat-card {
+      background: var(--blanc);
+      border-radius: 20px;
+      box-shadow: 0 6px 40px rgba(242,101,34,0.1), 0 2px 12px rgba(0,0,0,0.07);
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+    }
+
+    .chat-card-header {
+      background: var(--orange);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .chat-avatar {
+      width: 42px;
+      height: 42px;
+      background: var(--jaune);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .chat-header-text { color: white; }
+
+    .chat-header-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .chat-header-text span {
+      font-size: 0.76rem;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+
+    .chat-online {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+    }
+
+    .chat-online-dot {
+      width: 7px;
+      height: 7px;
+      background: #a8f0c0;
+      border-radius: 50%;
+    }
+
+    .chat-body-placeholder {
+      padding: 2.5rem 2rem;
+      text-align: center;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: #fdfcfb;
+    }
+
+    .placeholder-text {
+      font-size: 0.92rem;
+      color: var(--gris);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .placeholder-code {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #c0b8b0;
+      background: #f5f0eb;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px dashed #ddd8d0;
+    }
+
+    /* IFRAME CHATBASE — décommenter quand ID disponible
+    .chatbase-iframe {
+      width: 100%;
+      height: 460px;
+      border: none;
+      display: block;
+    }
+    */
+
+    .suggestions {
+      padding: 1.2rem 1.5rem;
+      border-top: 1.5px solid var(--border);
+      background: var(--blanc);
+    }
+
+    .suggestions-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--gris);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .suggestions-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .suggestion-chip {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--orange);
+      background: var(--orange-bg);
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 1.5px solid transparent;
+    }
+
+    .suggestion-chip:hover {
+      background: var(--orange);
+      color: white;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.8rem 2rem;
+      border-top: 1.5px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--gris);
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 2.5rem 1rem 4.5rem; }
+      .chat-zone { padding: 0 1rem 3rem; }
+      .nav-logo-text { display: none; }
+      .leon-bubble { font-size: 0.7rem; right: calc(50% - 3.5rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-badge">OPCG</span>
+      <span class="nav-logo-text">Oracle du Pays de Château-Gontier</span>
+    </a>
+    <span class="nav-tag">🏊 Piscines</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        Votre voisin bien informé
+      </div>
+      <h1>Le bon pro,<br /><span>juste à côté de chez vous</span></h1>
+      <p class="hero-sub">Posez votre question à Léon —<br />il connaît tous les artisans du Pays de Château-Gontier.</p>
+    </div>
+
+    <!-- LÉON SVG -->
+    <div class="leon-wrapper">
+      <div style="position:relative; display:inline-block;">
+        <div class="leon-bubble">Bonjour ! Je peux vous aider 👋</div>
+        <svg width="110" height="150" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Corps -->
+          <rect x="28" y="72" width="54" height="52" rx="14" fill="#f26522"/>
+          <!-- Bras gauche -->
+          <rect x="8" y="76" width="22" height="12" rx="6" fill="#f26522" transform="rotate(-15 8 76)"/>
+          <!-- Bras droit levé (vague) -->
+          <rect x="78" y="58" width="22" height="12" rx="6" fill="#f26522" transform="rotate(-45 78 58)"/>
+          <!-- Main droite -->
+          <circle cx="96" cy="50" r="7" fill="#ffd5b8"/>
+          <!-- Jambe gauche -->
+          <rect x="34" y="118" width="16" height="26" rx="8" fill="#2c2418"/>
+          <!-- Jambe droite -->
+          <rect x="58" y="118" width="16" height="26" rx="8" fill="#2c2418"/>
+          <!-- Chaussures -->
+          <ellipse cx="42" cy="144" rx="11" ry="6" fill="#1a1510"/>
+          <ellipse cx="66" cy="144" rx="11" ry="6" fill="#1a1510"/>
+          <!-- Cou -->
+          <rect x="45" y="60" width="20" height="16" rx="6" fill="#ffd5b8"/>
+          <!-- Tête -->
+          <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
+          <!-- Cheveux -->
+          <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
+          <!-- Oreille gauche -->
+          <ellipse cx="29" cy="42" rx="5" ry="7" fill="#ffd5b8"/>
+          <!-- Oreille droite -->
+          <ellipse cx="81" cy="42" rx="5" ry="7" fill="#ffd5b8"/>
+          <!-- Yeux -->
+          <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
+          <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
+          <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
+          <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
+          <circle cx="46.5" cy="40" r="1" fill="white"/>
+          <circle cx="68.5" cy="40" r="1" fill="white"/>
+          <!-- Sourcils -->
+          <path d="M39 33 Q44 30 49 33" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M61 33 Q66 30 71 33" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <!-- Sourire -->
+          <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Joues -->
+          <ellipse cx="38" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
+          <ellipse cx="72" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
+          <!-- Poche chemise -->
+          <rect x="48" y="80" width="16" height="12" rx="3" fill="#e05510" opacity="0.5"/>
+          <!-- Stylo dans la poche -->
+          <rect x="57" y="76" width="3" height="10" rx="1.5" fill="#ffc107"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAT ZONE -->
+  <div class="chat-zone">
+    <div class="chat-card">
+
+      <div class="chat-card-header">
+        <div class="chat-avatar">
+          <!-- Mini Léon dans l'avatar -->
+          <svg width="32" height="32" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
+            <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
+            <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
+            <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
+            <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
+            <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
+            <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="38" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
+            <ellipse cx="72" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="chat-header-text">
+          <strong>Léon, votre voisin OPCG</strong>
+          <span>Piscinistes — Pays de Château-Gontier</span>
+        </div>
+        <div class="chat-online">
+          <span class="chat-online-dot"></span>
+          En ligne
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER — remplacer par l'iframe Chatbase -->
+      <div class="chat-body-placeholder">
+        <svg width="48" height="48" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.25">
+          <ellipse cx="55" cy="42" rx="26" ry="28" fill="#f26522"/>
+          <rect x="28" y="72" width="54" height="52" rx="14" fill="#f26522"/>
+        </svg>
+        <div class="placeholder-text">
+          Léon sera disponible ici très bientôt.<br />En attente de configuration Chatbase.
+        </div>
+        <div class="placeholder-code">src="https://www.chatbase.co/chatbot-iframe/VOTRE-ID"</div>
+      </div>
+
+      <!-- IFRAME CHATBASE — décommenter et remplacer VOTRE-ID
+      <iframe
+        class="chatbase-iframe"
+        src="https://www.chatbase.co/chatbot-iframe/VOTRE-ID"
+        title="Léon — Oracle OPCG Piscines"
+        allow="microphone"
+      ></iframe>
+      -->
+
+      <div class="suggestions">
+        <div class="suggestions-label">Questions fréquentes</div>
+        <div class="suggestions-list">
+          <span class="suggestion-chip">Pisciniste à Château-Gontier ?</span>
+          <span class="suggestion-chip">Installation piscine polyester ?</span>
+          <span class="suggestion-chip">Plage de piscine, qui contacter ?</span>
+          <span class="suggestion-chip">Entretien piscine sur Le Lion-d'Angers ?</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    OPCG · Pays de Château-Gontier · V1 2026
+  </footer>
+
+</body>
+</html>
