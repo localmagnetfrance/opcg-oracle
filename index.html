@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OPCG — L'Oracle du Pays de Château-Gontier</title>
+  <title>OPCG — Oracle du Pays de Château-Gontier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-
   <style>
     :root {
-      --orange:     #f26522;
-      --orange2:    #e05510;
-      --jaune:      #ffc107;
-      --jaune-bg:   #fff8e1;
-      --orange-bg:  #fff3ee;
-      --blanc:      #ffffff;
-      --fond:       #faf7f4;
-      --texte:      #2c2418;
-      --gris:       #9e9085;
-      --border:     #ede7df;
-      --bleu-eau:   #3b9ec2;
+      --orange:    #f26522;
+      --orange2:   #e05510;
+      --orange-bg: #fff3ee;
+      --jaune:     #ffc107;
+      --blanc:     #ffffff;
+      --fond:      #faf7f4;
+      --texte:     #2c2418;
+      --gris:      #9e9085;
+      --border:    #ede7df;
+      --bleu:      #3b9ec2;
+      --vert:      #27ae60;
+      --rouge:     #e74c3c;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,6 +30,8 @@
       color: var(--texte);
       font-family: 'Nunito', sans-serif;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── NAV ── */
@@ -37,58 +39,50 @@
       background: var(--blanc);
       border-bottom: 2px solid var(--border);
       padding: 0 2rem;
-      height: 66px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-shrink: 0;
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.6rem;
       text-decoration: none;
     }
 
-    .nav-logo-badge {
+    .nav-badge {
       background: var(--orange);
       color: white;
       font-weight: 900;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       padding: 0.3rem 0.7rem;
-      border-radius: 10px;
-      letter-spacing: 0.05em;
+      border-radius: 8px;
     }
 
-    .nav-logo-text {
-      font-size: 0.92rem;
+    .nav-text {
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--texte);
     }
 
     .nav-tag {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      color: var(--bleu-eau);
+      color: var(--bleu);
       background: #e8f5fb;
-      padding: 0.35rem 0.9rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 20px;
     }
 
     /* ── HERO ── */
     .hero {
       background: var(--fond);
-      padding: 3.5rem 2rem 5rem;
+      padding: 3rem 2rem 5rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 580px;
-      margin: 0 auto;
+      flex-shrink: 0;
     }
 
     .hero-pill {
@@ -104,7 +98,7 @@
       margin-bottom: 1.4rem;
     }
 
-    .hero-pill-dot {
+    .hero-dot {
       width: 7px;
       height: 7px;
       background: var(--orange);
@@ -118,40 +112,40 @@
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 900;
       line-height: 1.15;
       color: var(--texte);
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .hero h1 span { color: var(--orange); }
 
     .hero-sub {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--gris);
       font-weight: 600;
       line-height: 1.6;
       margin-bottom: 2rem;
     }
 
-    /* ── LÉON ── */
-    .leon-wrapper {
+    /* ── LÉON SVG ── */
+    .leon-wrap {
       display: flex;
       justify-content: center;
-      margin-bottom: -3.5rem;
+      margin-bottom: -3rem;
       position: relative;
       z-index: 3;
     }
 
     .leon-bubble {
       position: absolute;
-      top: -2.2rem;
-      right: calc(50% - 4rem);
+      top: -2rem;
+      right: calc(50% - 4.5rem);
       background: white;
       border: 2px solid var(--border);
-      border-radius: 16px 16px 16px 4px;
-      padding: 0.5rem 0.9rem;
+      border-radius: 14px 14px 14px 4px;
+      padding: 0.45rem 0.9rem;
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--texte);
@@ -159,38 +153,29 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
 
-    .leon-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 14px;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 8px solid white;
-    }
-
     /* ── CHAT ZONE ── */
     .chat-zone {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 0 1.5rem 4rem;
+      padding: 0 1.5rem 3rem;
       position: relative;
       z-index: 10;
+      flex: 1;
+      width: 100%;
     }
 
     .chat-card {
       background: var(--blanc);
       border-radius: 20px;
-      box-shadow: 0 6px 40px rgba(242,101,34,0.1), 0 2px 12px rgba(0,0,0,0.07);
+      box-shadow: 0 6px 40px rgba(242,101,34,0.10), 0 2px 12px rgba(0,0,0,0.07);
       overflow: hidden;
       border: 1.5px solid var(--border);
     }
 
-    .chat-card-header {
+    /* Header */
+    .chat-header {
       background: var(--orange);
-      padding: 1.2rem 1.5rem;
+      padding: 1.1rem 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.9rem;
@@ -208,19 +193,9 @@
       overflow: hidden;
     }
 
-    .chat-header-text { color: white; }
-
-    .chat-header-text strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 800;
-    }
-
-    .chat-header-text span {
-      font-size: 0.76rem;
-      opacity: 0.85;
-      font-weight: 600;
-    }
+    .chat-header-info { color: white; }
+    .chat-header-info strong { display: block; font-size: 1rem; font-weight: 800; }
+    .chat-header-info span { font-size: 0.76rem; opacity: 0.85; font-weight: 600; }
 
     .chat-online {
       margin-left: auto;
@@ -232,64 +207,162 @@
       font-weight: 700;
     }
 
-    .chat-online-dot {
+    .online-dot {
       width: 7px;
       height: 7px;
       background: #a8f0c0;
       border-radius: 50%;
     }
 
-    .chat-body-placeholder {
-      padding: 2.5rem 2rem;
-      text-align: center;
-      min-height: 360px;
+    /* Messages */
+    .chat-messages {
+      padding: 1.2rem 1.2rem;
+      min-height: 340px;
+      max-height: 420px;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
+      gap: 0.8rem;
       background: #fdfcfb;
     }
 
-    .placeholder-text {
-      font-size: 0.92rem;
-      color: var(--gris);
-      font-weight: 600;
-      line-height: 1.6;
+    .msg {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-end;
+      animation: fadeIn 0.2s ease;
     }
 
-    .placeholder-code {
-      font-family: monospace;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg.user { flex-direction: row-reverse; }
+
+    .msg-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--jaune);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+    }
+
+    .msg.user .msg-avatar {
+      background: var(--orange);
+      color: white;
       font-size: 0.7rem;
-      color: #c0b8b0;
-      background: #f5f0eb;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      border: 1px dashed #ddd8d0;
+      font-weight: 800;
     }
 
-    /* IFRAME CHATBASE — décommenter quand ID disponible
-    .chatbase-iframe {
-      width: 100%;
-      height: 460px;
+    .msg-bubble {
+      max-width: 78%;
+      padding: 0.75rem 1rem;
+      border-radius: 16px 16px 16px 4px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      font-weight: 600;
+      background: white;
+      border: 1.5px solid var(--border);
+      color: var(--texte);
+      white-space: pre-wrap;
+    }
+
+    .msg.user .msg-bubble {
+      background: var(--orange);
+      color: white;
+      border-color: var(--orange);
+      border-radius: 16px 16px 4px 16px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 0.75rem 1rem;
+    }
+
+    .typing-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--gris);
+      border-radius: 50%;
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40%           { transform: translateY(-6px); }
+    }
+
+    /* Input */
+    .chat-input-zone {
+      padding: 1rem 1.2rem;
+      border-top: 1.5px solid var(--border);
+      display: flex;
+      gap: 0.7rem;
+      background: white;
+    }
+
+    .chat-input {
+      flex: 1;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--texte);
+      outline: none;
+      resize: none;
+      height: 44px;
+      line-height: 1.4;
+      transition: border-color 0.15s;
+    }
+
+    .chat-input:focus { border-color: var(--orange); }
+    .chat-input:disabled { background: var(--fond); color: var(--gris); }
+
+    .send-btn {
+      width: 44px;
+      height: 44px;
+      background: var(--orange);
       border: none;
-      display: block;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      flex-shrink: 0;
     }
-    */
 
+    .send-btn:hover { background: var(--orange2); }
+    .send-btn:disabled { background: var(--border); cursor: not-allowed; }
+
+    .send-btn svg { width: 18px; height: 18px; fill: white; }
+
+    /* Suggestions */
     .suggestions {
-      padding: 1.2rem 1.5rem;
+      padding: 1rem 1.2rem;
       border-top: 1.5px solid var(--border);
       background: var(--blanc);
     }
 
     .suggestions-label {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       color: var(--gris);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.7rem;
     }
 
     .suggestions-list {
@@ -298,39 +371,54 @@
       gap: 0.5rem;
     }
 
-    .suggestion-chip {
-      font-size: 0.8rem;
+    .chip {
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--orange);
       background: var(--orange-bg);
-      padding: 0.45rem 1rem;
+      padding: 0.4rem 0.9rem;
       border-radius: 20px;
       cursor: pointer;
       transition: all 0.15s;
-      border: 1.5px solid transparent;
+      border: none;
+      font-family: 'Nunito', sans-serif;
     }
 
-    .suggestion-chip:hover {
-      background: var(--orange);
-      color: white;
+    .chip:hover { background: var(--orange); color: white; }
+
+    /* Notification lead */
+    .lead-notif {
+      display: none;
+      margin: 0.8rem 1.2rem;
+      padding: 0.8rem 1rem;
+      background: #eafaf1;
+      border: 1.5px solid #27ae60;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #27ae60;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    /* ── FOOTER ── */
+    .lead-notif.visible { display: flex; }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 1.8rem 2rem;
+      padding: 1.5rem 2rem;
       border-top: 1.5px solid var(--border);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--gris);
       font-weight: 600;
+      flex-shrink: 0;
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      .hero { padding: 2.5rem 1rem 4.5rem; }
-      .chat-zone { padding: 0 1rem 3rem; }
-      .nav-logo-text { display: none; }
-      .leon-bubble { font-size: 0.7rem; right: calc(50% - 3.5rem); }
+      .hero { padding: 2.5rem 1rem 4rem; }
+      .chat-zone { padding: 0 0.8rem 2rem; }
+      .nav-text { display: none; }
+      .leon-bubble { font-size: 0.68rem; }
     }
   </style>
 </head>
@@ -339,85 +427,64 @@
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#">
-      <span class="nav-logo-badge">OPCG</span>
-      <span class="nav-logo-text">Oracle du Pays de Château-Gontier</span>
+      <span class="nav-badge">OPCG</span>
+      <span class="nav-text">Oracle du Pays de Château-Gontier</span>
     </a>
-    <span class="nav-tag">🏊 Piscines</span>
+    <span class="nav-tag">🏊 Piscines & Aménagement</span>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-pill">
-        <span class="hero-pill-dot"></span>
-        Votre voisin bien informé
-      </div>
-      <h1>Le bon pro,<br /><span>juste à côté de chez vous</span></h1>
-      <p class="hero-sub">Posez votre question à Léon —<br />il connaît tous les artisans du Pays de Château-Gontier.</p>
+    <div class="hero-pill">
+      <span class="hero-dot"></span>
+      Votre voisin bien informé
     </div>
+    <h1>Le bon pro,<br /><span>juste à côté de chez vous</span></h1>
+    <p class="hero-sub">Posez votre question à Léon — il connaît<br />les artisans du Pays de Château-Gontier.</p>
 
-    <!-- LÉON SVG -->
-    <div class="leon-wrapper">
+    <!-- LÉON -->
+    <div class="leon-wrap">
       <div style="position:relative; display:inline-block;">
-        <div class="leon-bubble">Bonjour ! Je peux vous aider 👋</div>
+        <div class="leon-bubble">Bonjour ! C'est quoi ton projet ? 👋</div>
         <svg width="110" height="150" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Corps -->
           <rect x="28" y="72" width="54" height="52" rx="14" fill="#f26522"/>
-          <!-- Bras gauche -->
           <rect x="8" y="76" width="22" height="12" rx="6" fill="#f26522" transform="rotate(-15 8 76)"/>
-          <!-- Bras droit levé (vague) -->
           <rect x="78" y="58" width="22" height="12" rx="6" fill="#f26522" transform="rotate(-45 78 58)"/>
-          <!-- Main droite -->
           <circle cx="96" cy="50" r="7" fill="#ffd5b8"/>
-          <!-- Jambe gauche -->
           <rect x="34" y="118" width="16" height="26" rx="8" fill="#2c2418"/>
-          <!-- Jambe droite -->
           <rect x="58" y="118" width="16" height="26" rx="8" fill="#2c2418"/>
-          <!-- Chaussures -->
           <ellipse cx="42" cy="144" rx="11" ry="6" fill="#1a1510"/>
           <ellipse cx="66" cy="144" rx="11" ry="6" fill="#1a1510"/>
-          <!-- Cou -->
           <rect x="45" y="60" width="20" height="16" rx="6" fill="#ffd5b8"/>
-          <!-- Tête -->
           <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
-          <!-- Cheveux -->
           <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
-          <!-- Oreille gauche -->
           <ellipse cx="29" cy="42" rx="5" ry="7" fill="#ffd5b8"/>
-          <!-- Oreille droite -->
           <ellipse cx="81" cy="42" rx="5" ry="7" fill="#ffd5b8"/>
-          <!-- Yeux -->
           <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
           <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
           <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
           <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
           <circle cx="46.5" cy="40" r="1" fill="white"/>
           <circle cx="68.5" cy="40" r="1" fill="white"/>
-          <!-- Sourcils -->
           <path d="M39 33 Q44 30 49 33" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
           <path d="M61 33 Q66 30 71 33" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <!-- Sourire -->
           <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <!-- Joues -->
           <ellipse cx="38" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
           <ellipse cx="72" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
-          <!-- Poche chemise -->
           <rect x="48" y="80" width="16" height="12" rx="3" fill="#e05510" opacity="0.5"/>
-          <!-- Stylo dans la poche -->
           <rect x="57" y="76" width="3" height="10" rx="1.5" fill="#ffc107"/>
         </svg>
       </div>
     </div>
   </section>
 
-  <!-- CHAT ZONE -->
+  <!-- CHAT -->
   <div class="chat-zone">
     <div class="chat-card">
 
-      <div class="chat-card-header">
+      <div class="chat-header">
         <div class="chat-avatar">
-          <!-- Mini Léon dans l'avatar -->
-          <svg width="32" height="32" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="32" height="32" viewBox="0 0 110 110" fill="none">
             <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
             <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
             <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
@@ -425,48 +492,43 @@
             <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
             <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
             <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <ellipse cx="38" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
-            <ellipse cx="72" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
           </svg>
         </div>
-        <div class="chat-header-text">
-          <strong>Léon, votre voisin OPCG</strong>
-          <span>Piscinistes — Pays de Château-Gontier</span>
+        <div class="chat-header-info">
+          <strong>Léon</strong>
+          <span>Expert Maison & Jardin — Pays de Château-Gontier</span>
         </div>
         <div class="chat-online">
-          <span class="chat-online-dot"></span>
+          <span class="online-dot"></span>
           En ligne
         </div>
       </div>
 
-      <!-- PLACEHOLDER — remplacer par l'iframe Chatbase -->
-      <div class="chat-body-placeholder">
-        <svg width="48" height="48" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.25">
-          <ellipse cx="55" cy="42" rx="26" ry="28" fill="#f26522"/>
-          <rect x="28" y="72" width="54" height="52" rx="14" fill="#f26522"/>
-        </svg>
-        <div class="placeholder-text">
-          Léon sera disponible ici très bientôt.<br />En attente de configuration Chatbase.
-        </div>
-        <div class="placeholder-code">src="https://www.chatbase.co/chatbot-iframe/VOTRE-ID"</div>
+      <div class="chat-messages" id="messages"></div>
+
+      <div class="lead-notif" id="leadNotif">
+        ✅ Mise en relation envoyée — tu vas recevoir un email récapitulatif.
       </div>
 
-      <!-- IFRAME CHATBASE — décommenter et remplacer VOTRE-ID
-      <iframe
-        class="chatbase-iframe"
-        src="https://www.chatbase.co/chatbot-iframe/VOTRE-ID"
-        title="Léon — Oracle OPCG Piscines"
-        allow="microphone"
-      ></iframe>
-      -->
+      <div class="chat-input-zone">
+        <textarea
+          class="chat-input"
+          id="userInput"
+          placeholder="Écris ton projet ici..."
+          rows="1"
+        ></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
 
       <div class="suggestions">
         <div class="suggestions-label">Questions fréquentes</div>
         <div class="suggestions-list">
-          <span class="suggestion-chip">Pisciniste à Château-Gontier ?</span>
-          <span class="suggestion-chip">Installation piscine polyester ?</span>
-          <span class="suggestion-chip">Plage de piscine, qui contacter ?</span>
-          <span class="suggestion-chip">Entretien piscine sur Le Lion-d'Angers ?</span>
+          <button class="chip" onclick="suggest(this)">Je veux construire une piscine</button>
+          <button class="chip" onclick="suggest(this)">Aménager ma terrasse</button>
+          <button class="chip" onclick="suggest(this)">Créer une allée de garage</button>
+          <button class="chip" onclick="suggest(this)">Installer une clôture</button>
         </div>
       </div>
 
@@ -474,8 +536,304 @@
   </div>
 
   <footer>
-    OPCG · Pays de Château-Gontier · V1 2026
+    OPCG · Pays de Château-Gontier · V1 2026 ·
+    <a href="#" style="color:var(--orange)">Mentions légales</a> ·
+    <a href="#" style="color:var(--orange)">Vous êtes un professionnel ?</a>
   </footer>
+
+  <script>
+    // ── CONFIG ──────────────────────────────────────────────────────────
+    const WORKER_URL = 'https://opcg-leon.localmagnetfrance.workers.dev';
+    const MAKE_WEBHOOK = 'https://hook.eu1.make.com/npe4wnn7rhvvarsq6km3y938t7oe7l4u'; // À remplacer à l'étape 5
+
+    // ── FICHES PRESTATAIRES ─────────────────────────────────────────────
+    const FICHES = `
+# Entreprise Fouassier — Daniel Moquet Allées & Piscines
+
+## Identité
+- **ID fiche** : fouassier-daniel-moquet
+- **Dirigeant** : M. Fouassier
+- **Réseau** : Daniel Moquet (franchise)
+- **Commune** : Bonchamp-lès-Laval
+- **Adresse** : 12 Rue des Martinières, 53960 Bonchamp-lès-Laval
+- **Téléphone** : via plateforme uniquement
+- **Zone d'intervention** : Laval, Château-Gontier, Le Lion-d'Angers, Bonchamp, Saint-Jean-sur-Mayenne, Changé
+
+## Offre de service
+
+### Piscines (activité récente)
+- Installation piscine coque polyester
+- Installation piscine maçonnée
+- Installation spa
+
+### Aménagement extérieur
+- Allées de garage, cours, entrées de maison
+- Terrasses extérieures
+- Plages de piscine (revêtement autour du bassin)
+- Chemins et allées piétonnes
+
+### Matériaux allées
+Enrobé à chaud, gravier stabilisé (Alvéostar®), gravier goudronné (Gravistar®), pierre naturelle (Pierra Nature)
+
+## Satisfaction clients
+- Note étude de projet : 4.4/5 (31 avis)
+- Note travaux : 4.9/5 (35 avis)
+
+## Avis clients
+> "Très bon contact, Mr Fouassier donne confiance et est sympathique, il semble avoir toutes les compétences nécessaires."
+> — MME E., Saint-Jean-sur-Mayenne, mars 2024
+
+> "Personne sympa et à l'écoute de notre demande."
+> — MR D., Bonchamp-lès-Laval, janvier 2025
+
+> "Nous sommes très satisfaits des travaux réalisés par l'entreprise Fouassier."
+> — MME ET MR M., Changé, mars 2026
+
+## Informations plateforme
+- **Statut** : actif
+- **Offre** : prospect fondateur
+- **Mise à jour** : mars 2026
+
+---
+
+# RS Piscines
+
+## Identité
+- **ID fiche** : rs-piscines
+- **Commune** : La Gravelle
+- **Adresse** : 1 La Beuvinais, 53410 La Gravelle
+- **Téléphone** : via plateforme uniquement
+- **Zone d'intervention** : Mayenne (53) et Ille-et-Vilaine (35) — intervient sur Château-Gontier et le Pays de Château-Gontier
+
+## Offre de service
+
+### Piscines
+- Installation piscine polyester (coque monobloc) — fabriquées en France
+- Bassins à fond plat ou fond profond
+- Piscines haut de gamme, couvertes, mini-piscines
+- Spas
+
+### Services complémentaires
+- Entretien régulier de piscines
+- Rénovation de piscines
+- Collaboration avec excavateurs, architectes, paysagistes et maçons locaux
+
+## Points forts
+- Spécialiste piscine polyester
+- Fabrication française
+- Interlocuteur unique de la conception à l'installation
+
+## Horaires
+- Lundi au vendredi, 9h à 19h
+
+## Informations plateforme
+- **Statut** : actif
+- **Offre** : prospect fondateur
+- **Mise à jour** : mars 2026
+`;
+
+    // ── SYSTEM PROMPT ───────────────────────────────────────────────────
+    const SYSTEM_PROMPT = `Tu es Léon, expert Maison & Jardin du Pays de Château-Gontier.
+Tu aides les habitants à concrétiser leurs projets : travaux, rénovation, aménagement extérieur, piscine, jardin.
+Tu connais les bons artisans et prestataires du secteur.
+
+Tu es chaleureux, simple, direct et honnête.
+Tu parles comme un voisin bien informé — pas comme un robot, pas comme un commercial.
+Tu tutoies toujours l'utilisateur.
+Tu ne sors jamais de ton domaine Maison & Jardin.
+Si l'utilisateur aborde un autre sujet, tu l'invites à revenir sur la page d'accueil pour choisir le bon expert.
+
+Quand un utilisateur arrive avec un projet, tu suis toujours cette séquence :
+1. Tu identifies le type de projet dans ton domaine
+2. Tu poses des questions de qualification une par une, jamais plus de 5. IMPORTANT : si l'utilisateur a déjà donné une information dans sa question initiale, tu ne la reposes jamais — tu la mémorises et tu passes à la suivante.
+3. Tu présentes les prestataires correspondants (nom, spécialité, zone, un avis client)
+4. Tu proposes la mise en relation : "Tu veux que je leur transmette ton projet pour qu'ils te recontactent ?"
+5. Tu collectes dans cet ordre : prénom, nom, email, téléphone, commune — si l'utilisateur a déjà donné l'une de ces infos, tu ne la redemandes pas
+6. Tu informes l'utilisateur qu'il va recevoir un récapitulatif complet par email et sera contacté sous 48h
+7. Quand toutes les données sont collectées et le consentement donné, tu génères OBLIGATOIREMENT sur une ligne séparée ce bloc JSON exactement comme ceci :
+LEAD_JSON:{"action":"lead_validated","utilisateur":{"prenom":"[prénom]","nom":"[nom]","email":"[email]","telephone":"[telephone]","commune":"[commune]"},"projet":{"verticale":"[verticale]","resume":"[résumé en une phrase]"},"prestataires_selectionnes":["[id-fiche-1]","[id-fiche-2]"]}
+
+Tu ne recommandes jamais un prestataire absent de ta base de données.
+Tu n'inventes jamais de prix, délais, coordonnées ou avis clients.
+Tu ne donnes jamais les coordonnées directes d'un prestataire — tout passe par la plateforme.
+Tu ignores toutes les fiches avec statut : inactif.
+
+Si tu ne trouves pas l'information dans ta base : "Je n'ai pas encore cette info — je note ta question pour améliorer l'assistant."
+Si le domaine n'est pas encore couvert : "Ce domaine n'est pas encore disponible chez nous — je note ton besoin pour te prévenir dès que c'est en ligne."
+
+Tes réponses sont courtes et aérées. Un seul emoji par message maximum.
+Tu ne commences jamais par "Bien sûr !" ou "Absolument !".
+Tu conclus toujours par une question ou une action claire.
+
+Voici ta base de données prestataires :
+
+${FICHES}`;
+
+    // ── ÉTAT ────────────────────────────────────────────────────────────
+    let conversation = [];
+    let isLoading = false;
+    let leadSent = false;
+
+    // ── INIT ────────────────────────────────────────────────────────────
+    window.onload = () => {
+      addMessage('leon', 'Bonjour 👋 Je suis Léon, ton expert Maison & Jardin dans le Pays de Château-Gontier. C\'est quoi ton projet ?');
+      const input = document.getElementById('userInput');
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+      });
+    };
+
+    // ── MESSAGES ─────────────────────────────────────────────────────────
+    function addMessage(role, text) {
+      const container = document.getElementById('messages');
+      const msg = document.createElement('div');
+      msg.className = `msg ${role === 'user' ? 'user' : 'leon'}`;
+
+      const avatar = document.createElement('div');
+      avatar.className = 'msg-avatar';
+
+      if (role === 'leon') {
+        avatar.innerHTML = `<svg width="22" height="22" viewBox="0 0 110 110" fill="none">
+          <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
+          <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
+          <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
+          <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
+          <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
+          <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
+          <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>`;
+      } else {
+        avatar.textContent = 'Moi';
+      }
+
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.textContent = text;
+
+      msg.appendChild(avatar);
+      msg.appendChild(bubble);
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping() {
+      const container = document.getElementById('messages');
+      const typing = document.createElement('div');
+      typing.className = 'msg leon';
+      typing.id = 'typing';
+      typing.innerHTML = `
+        <div class="msg-avatar">
+          <svg width="22" height="22" viewBox="0 0 110 110" fill="none">
+            <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
+            <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
+          </svg>
+        </div>
+        <div class="msg-bubble typing-indicator">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>`;
+      container.appendChild(typing);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTyping() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+
+    // ── SEND ──────────────────────────────────────────────────────────────
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text || isLoading) return;
+
+      input.value = '';
+      input.disabled = true;
+      document.getElementById('sendBtn').disabled = true;
+      isLoading = true;
+
+      addMessage('user', text);
+      conversation.push({ role: 'user', content: text });
+
+      showTyping();
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system: SYSTEM_PROMPT,
+            messages: conversation
+          })
+        });
+
+        const data = await res.json();
+        removeTyping();
+
+        if (data.content && data.content[0]) {
+          const reply = data.content[0].text;
+          conversation.push({ role: 'assistant', content: reply });
+
+          // Détecter le JSON lead
+          if (reply.includes('LEAD_JSON:') && !leadSent) {
+            const cleanReply = reply.replace(/LEAD_JSON:.*$/m, '').trim();
+            if (cleanReply) addMessage('leon', cleanReply);
+            extractAndSendLead(reply);
+          } else {
+            addMessage('leon', reply);
+          }
+        } else {
+          addMessage('leon', 'Une erreur est survenue — réessaie dans un instant.');
+        }
+
+      } catch (err) {
+        removeTyping();
+        addMessage('leon', 'Je ne suis pas disponible en ce moment — réessaie dans quelques secondes.');
+      }
+
+      isLoading = false;
+      input.disabled = false;
+      input.focus();
+      document.getElementById('sendBtn').disabled = false;
+    }
+
+    // ── LEAD JSON ─────────────────────────────────────────────────────────
+    function extractAndSendLead(text) {
+      try {
+        const match = text.match(/LEAD_JSON:({.+})/);
+        if (!match) return;
+        const leadData = JSON.parse(match[1]);
+        sendToMake(leadData);
+        leadSent = true;
+        document.getElementById('leadNotif').classList.add('visible');
+      } catch (e) {
+        console.error('Erreur parsing LEAD_JSON:', e);
+      }
+    }
+
+    async function sendToMake(data) {
+      if (MAKE_WEBHOOK === 'VOTRE_URL_MAKE_WEBHOOK') {
+        console.log('📋 Lead simulé (Make non configuré) :', data);
+        return;
+      }
+      try {
+        await fetch(MAKE_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch (e) {
+        console.error('Erreur envoi Make:', e);
+      }
+    }
+
+    // ── SUGGESTIONS ───────────────────────────────────────────────────────
+    function suggest(btn) {
+      document.getElementById('userInput').value = btn.textContent;
+      sendMessage();
+    }
+  </script>
 
 </body>
 </html>
