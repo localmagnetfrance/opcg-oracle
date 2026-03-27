@@ -1,845 +1,518 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OPCG — Oracle du Pays de Château-Gontier</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --orange:    #f26522;
-      --orange2:   #e05510;
-      --orange-bg: #fff3ee;
-      --jaune:     #ffc107;
-      --blanc:     #ffffff;
-      --fond:      #faf7f4;
-      --texte:     #2c2418;
-      --gris:      #9e9085;
-      --border:    #ede7df;
-      --bleu:      #3b9ec2;
-      --vert:      #27ae60;
-      --rouge:     #e74c3c;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--blanc);
-      color: var(--texte);
-      font-family: 'Nunito', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--blanc);
-      border-bottom: 2px solid var(--border);
-      padding: 0 2rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-    }
-
-    .nav-badge {
-      background: var(--orange);
-      color: white;
-      font-weight: 900;
-      font-size: 0.85rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 8px;
-    }
-
-    .nav-text {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--texte);
-    }
-
-    .nav-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--bleu);
-      background: #e8f5fb;
-      padding: 0.3rem 0.9rem;
-      border-radius: 20px;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--fond);
-      padding: 3rem 2rem 5rem;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--orange-bg);
-      color: var(--orange);
-      font-size: 0.82rem;
-      font-weight: 800;
-      padding: 0.45rem 1.1rem;
-      border-radius: 20px;
-      margin-bottom: 1.4rem;
-    }
-
-    .hero-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--orange);
-      border-radius: 50%;
-      animation: blink 1.8s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.25; }
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      line-height: 1.15;
-      color: var(--texte);
-      margin-bottom: 0.8rem;
-    }
-
-    .hero h1 span { color: var(--orange); }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--gris);
-      font-weight: 600;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
-    /* ── LÉON SVG ── */
-    .leon-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: -3rem;
-      position: relative;
-      z-index: 3;
-    }
-
-    .leon-bubble {
-      position: absolute;
-      top: -2rem;
-      right: calc(50% - 4.5rem);
-      background: white;
-      border: 2px solid var(--border);
-      border-radius: 14px 14px 14px 4px;
-      padding: 0.45rem 0.9rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--texte);
-      white-space: nowrap;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
-
-    /* ── CHAT ZONE ── */
-    .chat-zone {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-      position: relative;
-      z-index: 10;
-      flex: 1;
-      width: 100%;
-    }
-
-    .chat-card {
-      background: var(--blanc);
-      border-radius: 20px;
-      box-shadow: 0 6px 40px rgba(242,101,34,0.10), 0 2px 12px rgba(0,0,0,0.07);
-      overflow: hidden;
-      border: 1.5px solid var(--border);
-    }
-
-    /* Header */
-    .chat-header {
-      background: var(--orange);
-      padding: 1.1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-    }
-
-    .chat-avatar {
-      width: 42px;
-      height: 42px;
-      background: var(--jaune);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      overflow: hidden;
-    }
-
-    .chat-header-info { color: white; }
-    .chat-header-info strong { display: block; font-size: 1rem; font-weight: 800; }
-    .chat-header-info span { font-size: 0.76rem; opacity: 0.85; font-weight: 600; }
-
-    .chat-online {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.9);
-      font-weight: 700;
-    }
-
-    .online-dot {
-      width: 7px;
-      height: 7px;
-      background: #a8f0c0;
-      border-radius: 50%;
-    }
-
-    /* Messages */
-    .chat-messages {
-      padding: 1.2rem 1.2rem;
-      min-height: 340px;
-      max-height: 420px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      background: #fdfcfb;
-    }
-
-    .msg {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-end;
-      animation: fadeIn 0.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .msg.user { flex-direction: row-reverse; }
-
-    .msg-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--jaune);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.85rem;
-    }
-
-    .msg.user .msg-avatar {
-      background: var(--orange);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 800;
-    }
-
-    .msg-bubble {
-      max-width: 78%;
-      padding: 0.75rem 1rem;
-      border-radius: 16px 16px 16px 4px;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      font-weight: 600;
-      background: white;
-      border: 1.5px solid var(--border);
-      color: var(--texte);
-      white-space: pre-wrap;
-    }
-
-    .msg.user .msg-bubble {
-      background: var(--orange);
-      color: white;
-      border-color: var(--orange);
-      border-radius: 16px 16px 4px 16px;
-    }
-
-    .typing-indicator {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      padding: 0.75rem 1rem;
-    }
-
-    .typing-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--gris);
-      border-radius: 50%;
-      animation: bounce 1.2s ease-in-out infinite;
-    }
-
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes bounce {
-      0%, 80%, 100% { transform: translateY(0); }
-      40%           { transform: translateY(-6px); }
-    }
-
-    /* Input */
-    .chat-input-zone {
-      padding: 1rem 1.2rem;
-      border-top: 1.5px solid var(--border);
-      display: flex;
-      gap: 0.7rem;
-      background: white;
-    }
-
-    .chat-input {
-      flex: 1;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 0.7rem 1rem;
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--texte);
-      outline: none;
-      resize: none;
-      height: 44px;
-      line-height: 1.4;
-      transition: border-color 0.15s;
-    }
-
-    .chat-input:focus { border-color: var(--orange); }
-    .chat-input:disabled { background: var(--fond); color: var(--gris); }
-
-    .send-btn {
-      width: 44px;
-      height: 44px;
-      background: var(--orange);
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s;
-      flex-shrink: 0;
-    }
-
-    .send-btn:hover { background: var(--orange2); }
-    .send-btn:disabled { background: var(--border); cursor: not-allowed; }
-
-    .send-btn svg { width: 18px; height: 18px; fill: white; }
-
-    /* Suggestions */
-    .suggestions {
-      padding: 1rem 1.2rem;
-      border-top: 1.5px solid var(--border);
-      background: var(--blanc);
-    }
-
-    .suggestions-label {
-      font-size: 0.68rem;
-      font-weight: 800;
-      color: var(--gris);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.7rem;
-    }
-
-    .suggestions-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .chip {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--orange);
-      background: var(--orange-bg);
-      padding: 0.4rem 0.9rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.15s;
-      border: none;
-      font-family: 'Nunito', sans-serif;
-    }
-
-    .chip:hover { background: var(--orange); color: white; }
-
-    /* Notification lead */
-    .lead-notif {
-      display: none;
-      margin: 0.8rem 1.2rem;
-      padding: 0.8rem 1rem;
-      background: #eafaf1;
-      border: 1.5px solid #27ae60;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #27ae60;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lead-notif.visible { display: flex; }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1.5rem 2rem;
-      border-top: 1.5px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--gris);
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding: 2.5rem 1rem 4rem; }
-      .chat-zone { padding: 0 0.8rem 2rem; }
-      .nav-text { display: none; }
-      .leon-bubble { font-size: 0.68rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Léon — Expert Maison & Jardin</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap');
+  :root {
+    --vert: #2D5016; --vert-clair: #4A7C2F; --vert-pale: #EEF4E8;
+    --creme: #FAF8F3; --gris: #6B7280; --gris-clair: #F3F4F6;
+    --blanc: #FFFFFF; --texte: #1C2B0E; --bordure: #D4E4C0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--creme); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 0 80px 0; }
+  .header { width: 100%; background: var(--vert); padding: 16px 24px; display: flex; align-items: center; gap: 14px; }
+  .leon-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--vert-clair); border: 2px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .leon-info h1 { font-family: 'Playfair Display', serif; font-size: 18px; color: white; font-weight: 600; line-height: 1.2; }
+  .leon-info p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+  .status-dot { width: 8px; height: 8px; background: #6EE37A; border-radius: 50%; display: inline-block; margin-right: 5px; }
+  .progress-bar { width: 100%; height: 3px; background: var(--bordure); }
+  .progress-fill { height: 100%; background: var(--vert-clair); transition: width 0.5s ease; }
+  .chat-zone { width: 100%; max-width: 600px; padding: 24px 16px 0; display: flex; flex-direction: column; gap: 20px; }
+  .bulle-leon { display: flex; gap: 10px; align-items: flex-end; animation: apparaitre 0.35s ease both; }
+  .bulle-leon .avatar-sm { width: 32px; height: 32px; border-radius: 50%; background: var(--vert); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .bulle-leon .texte { background: var(--blanc); border: 1px solid var(--bordure); border-radius: 18px 18px 18px 4px; padding: 12px 16px; font-size: 15px; color: var(--texte); line-height: 1.5; max-width: calc(100% - 50px); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .bulle-user { display: flex; justify-content: flex-end; animation: apparaitre 0.3s ease both; }
+  .bulle-user .texte { background: var(--vert); color: white; border-radius: 18px 18px 4px 18px; padding: 12px 16px; font-size: 15px; line-height: 1.5; max-width: 85%; }
+  .choix-zone { display: flex; flex-wrap: wrap; gap: 8px; padding-left: 42px; animation: apparaitre 0.4s ease both; }
+  .btn-choix { background: var(--blanc); border: 1.5px solid var(--bordure); border-radius: 24px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--vert); cursor: pointer; transition: all 0.18s; font-weight: 500; }
+  .btn-choix:hover:not(:disabled) { background: var(--vert-pale); border-color: var(--vert-clair); }
+  .btn-choix:disabled { opacity: 0.38; cursor: not-allowed; }
+  .sep-bientot { width: 100%; font-size: 12px; color: var(--gris); margin: 6px 0 2px; }
+  .input-zone { padding-left: 42px; animation: apparaitre 0.4s ease both; }
+  .input-wrap { display: flex; gap: 8px; align-items: flex-end; }
+  .input-texte { flex: 1; border: 1.5px solid var(--bordure); border-radius: 12px; padding: 11px 14px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--texte); background: var(--blanc); outline: none; resize: none; min-height: 46px; max-height: 200px; transition: border-color 0.18s; }
+  .input-texte.grande { min-height: 90px; }
+  .input-texte:focus { border-color: var(--vert-clair); }
+  .btn-envoyer { width: 44px; height: 44px; border-radius: 50%; background: var(--vert); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .btn-envoyer svg { width: 18px; height: 18px; fill: white; }
+  .typing { display: flex; gap: 10px; align-items: center; animation: apparaitre 0.3s ease both; }
+  .typing .avatar-sm { width: 32px; height: 32px; border-radius: 50%; background: var(--vert); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .typing-dots { background: var(--blanc); border: 1px solid var(--bordure); border-radius: 18px 18px 18px 4px; padding: 12px 18px; display: flex; gap: 5px; align-items: center; }
+  .typing-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--gris); animation: bounce 1.2s infinite; }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  .recap-card { background: var(--blanc); border: 1.5px solid var(--bordure); border-radius: 16px; padding: 18px; margin-left: 42px; animation: apparaitre 0.4s ease both; }
+  .recap-card h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--vert); margin-bottom: 12px; }
+  .recap-ligne { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--gris-clair); font-size: 14px; }
+  .recap-ligne:last-child { border-bottom: none; }
+  .recap-label { color: var(--gris); flex-shrink: 0; width: 130px; }
+  .recap-valeur { color: var(--texte); font-weight: 500; }
+  .barre-bas { position: fixed; bottom: 0; left: 0; right: 0; background: var(--blanc); border-top: 1px solid var(--bordure); padding: 12px 16px; display: flex; gap: 8px; align-items: flex-end; }
+  .input-bas { flex: 1; border: 1.5px solid var(--bordure); border-radius: 24px; padding: 10px 16px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--texte); background: var(--gris-clair); outline: none; resize: none; line-height: 1.4; }
+  .btn-send-bas { width: 42px; height: 42px; border-radius: 50%; background: var(--vert); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .btn-send-bas svg { width: 16px; height: 16px; fill: white; }
+  @keyframes apparaitre { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">
-      <span class="nav-badge">OPCG</span>
-      <span class="nav-text">Oracle du Pays de Château-Gontier</span>
-    </a>
-    <span class="nav-tag">🏊 Piscines & Aménagement</span>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-pill">
-      <span class="hero-dot"></span>
-      Votre voisin bien informé
-    </div>
-    <h1>Le bon pro,<br /><span>juste à côté de chez vous</span></h1>
-    <p class="hero-sub">Posez votre question à Léon — il connaît<br />les artisans du Pays de Château-Gontier.</p>
-
-    <!-- LÉON -->
-    <div class="leon-wrap">
-      <div style="position:relative; display:inline-block;">
-        <div class="leon-bubble">Bonjour ! C'est quoi ton projet ? 👋</div>
-        <svg width="110" height="150" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="28" y="72" width="54" height="52" rx="14" fill="#f26522"/>
-          <rect x="8" y="76" width="22" height="12" rx="6" fill="#f26522" transform="rotate(-15 8 76)"/>
-          <rect x="78" y="58" width="22" height="12" rx="6" fill="#f26522" transform="rotate(-45 78 58)"/>
-          <circle cx="96" cy="50" r="7" fill="#ffd5b8"/>
-          <rect x="34" y="118" width="16" height="26" rx="8" fill="#2c2418"/>
-          <rect x="58" y="118" width="16" height="26" rx="8" fill="#2c2418"/>
-          <ellipse cx="42" cy="144" rx="11" ry="6" fill="#1a1510"/>
-          <ellipse cx="66" cy="144" rx="11" ry="6" fill="#1a1510"/>
-          <rect x="45" y="60" width="20" height="16" rx="6" fill="#ffd5b8"/>
-          <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
-          <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
-          <ellipse cx="29" cy="42" rx="5" ry="7" fill="#ffd5b8"/>
-          <ellipse cx="81" cy="42" rx="5" ry="7" fill="#ffd5b8"/>
-          <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
-          <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
-          <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
-          <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
-          <circle cx="46.5" cy="40" r="1" fill="white"/>
-          <circle cx="68.5" cy="40" r="1" fill="white"/>
-          <path d="M39 33 Q44 30 49 33" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M61 33 Q66 30 71 33" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <ellipse cx="38" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
-          <ellipse cx="72" cy="50" rx="6" ry="4" fill="#f9a580" opacity="0.4"/>
-          <rect x="48" y="80" width="16" height="12" rx="3" fill="#e05510" opacity="0.5"/>
-          <rect x="57" y="76" width="3" height="10" rx="1.5" fill="#ffc107"/>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHAT -->
-  <div class="chat-zone">
-    <div class="chat-card">
-
-      <div class="chat-header">
-        <div class="chat-avatar">
-          <svg width="32" height="32" viewBox="0 0 110 110" fill="none">
-            <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
-            <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
-            <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
-            <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
-            <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
-            <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
-            <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-        <div class="chat-header-info">
-          <strong>Léon</strong>
-          <span>Expert Maison & Jardin — Pays de Château-Gontier</span>
-        </div>
-        <div class="chat-online">
-          <span class="online-dot"></span>
-          En ligne
-        </div>
-      </div>
-
-      <div class="chat-messages" id="messages"></div>
-
-      <div class="lead-notif" id="leadNotif">
-        ✅ Mise en relation envoyée — tu vas recevoir un email récapitulatif.
-      </div>
-
-      <div class="chat-input-zone">
-        <textarea
-          class="chat-input"
-          id="userInput"
-          placeholder="Écris ton projet ici..."
-          rows="1"
-        ></textarea>
-        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-        </button>
-      </div>
-
-      <div class="suggestions">
-        <div class="suggestions-label">Questions fréquentes</div>
-        <div class="suggestions-list">
-          <button class="chip" onclick="suggest(this)">Je veux construire une piscine</button>
-          <button class="chip" onclick="suggest(this)">Aménager ma terrasse</button>
-          <button class="chip" onclick="suggest(this)">Créer une allée de garage</button>
-          <button class="chip" onclick="suggest(this)">Installer une clôture</button>
-        </div>
-      </div>
-
-    </div>
+<div class="header">
+  <div class="leon-avatar">🌿</div>
+  <div class="leon-info">
+    <h1>Léon</h1>
+    <p><span class="status-dot"></span>Expert Maison &amp; Jardin · Pays de Château-Gontier</p>
   </div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="chat-zone" id="chatZone"></div>
+<div style="height:80px"></div>
 
-  <footer>
-    OPCG · Pays de Château-Gontier · V1 2026 ·
-    <a href="#" style="color:var(--orange)">Mentions légales</a> ·
-    <a href="#" style="color:var(--orange)">Vous êtes un professionnel ?</a>
-  </footer>
+<div class="barre-bas">
+  <textarea class="input-bas" id="inputBas" placeholder="Écrivez votre message…" rows="1" disabled></textarea>
+  <button class="btn-send-bas" disabled>
+    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+  </button>
+</div>
 
-  <script>
-    // ── CONFIG ──────────────────────────────────────────────────────────
-    const WORKER_URL = 'https://opcg-leon.localmagnetfrance.workers.dev';
-    const MAKE_WEBHOOK = 'https://hook.eu1.make.com/npe4wnn7rhvvarsq6km3y938t7oe7l4u'; // À remplacer à l'étape 5
+<script>
+var MAKE_WEBHOOK = 'https://hook.eu1.make.com/npe4wnn7rhvvarsq6km3y938t7oe7l4u';
 
-    // ── FICHES PRESTATAIRES ─────────────────────────────────────────────
-    const FICHES = `
-# Entreprise Fouassier — Daniel Moquet Allées & Piscines
+var etat = {
+  donnees: {
+    commune: null, descriptionLibre: null, typeProjet: null,
+    typePiscine: null, dimensions: null, accessibilite: null,
+    budget: null, delai: null,
+    prenom: null, email: null, telephone: null
+  },
+  questionsRestantes: ['typePiscine', 'dimensions', 'accessibilite', 'budget', 'delai']
+};
 
-## Identité
-- **ID fiche** : fouassier-daniel-moquet
-- **Dirigeant** : M. Fouassier
-- **Réseau** : Daniel Moquet (franchise)
-- **Commune** : Bonchamp-lès-Laval
-- **Adresse** : 12 Rue des Martinières, 53960 Bonchamp-lès-Laval
-- **Téléphone** : via plateforme uniquement
-- **Zone d'intervention** : Laval, Château-Gontier, Le Lion-d'Angers, Bonchamp, Saint-Jean-sur-Mayenne, Changé
+var COMMUNES = [
+  'chateau-gontier-sur-mayenne','chateau-gontier','chateau gontier',
+  'aze','saint-fort','saint fort','bazouges',
+  'bierne-les-villages','bierne les villages','bierne',
+  'saint-laurent-des-mortiers','saint laurent des mortiers',
+  'saint-michel-de-feins','saint michel de feins',
+  'argenton-notre-dame','argenton notre dame','argenton',
+  'chatelain','chemaze','daon',
+  'gennes-longuefuye','gennes longuefuye','gennes-sur-glaize','gennes sur glaize','gennes',
+  'longuefuye','houssay','menil','origne','peuton',
+  'pree-d-anjou','pree d anjou','ampoigne','laigne',
+  'la roche-neuville','la roche neuville','roche-neuville','roche neuville',
+  'loigne-sur-mayenne','loigne sur mayenne','loigne',
+  'saint-sulpice','saint-denis-d-anjou','saint denis d anjou','saint-denis',
+  'senonnes','pays de chateau-gontier'
+];
 
-## Offre de service
+function normaliser(s) {
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/'/g, ' ')
+    .replace(/-/g, ' ');
+}
 
-### Piscines (activité récente)
-- Installation piscine coque polyester
-- Installation piscine maçonnée
-- Installation spa
+function scroll() { setTimeout(function(){ window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }, 50); }
+function setProgression(pct) { document.getElementById('progressFill').style.width = pct + '%'; }
 
-### Aménagement extérieur
-- Allées de garage, cours, entrées de maison
-- Terrasses extérieures
-- Plages de piscine (revêtement autour du bassin)
-- Chemins et allées piétonnes
+function communeValide(texte) {
+  var t = normaliser(texte).trim();
+  return COMMUNES.some(function(c){ return t.includes(c); });
+}
 
-### Matériaux allées
-Enrobé à chaud, gravier stabilisé (Alvéostar®), gravier goudronné (Gravistar®), pierre naturelle (Pierra Nature)
+function extraireInfos(texte) {
+  var t = normaliser(texte);
+  var infos = {};
 
-## Satisfaction clients
-- Note étude de projet : 4.4/5 (31 avis)
-- Note travaux : 4.9/5 (35 avis)
+  if (t.includes('coque') || t.includes('polyester')) infos.typePiscine = 'Coque polyester';
+  else if (t.includes('beton') || t.includes('beton arme')) infos.typePiscine = 'Béton armé';
+  else if (t.includes('hors-sol') || t.includes('hors sol')) infos.typePiscine = 'Hors-sol';
 
-## Avis clients
-> "Très bon contact, Mr Fouassier donne confiance et est sympathique, il semble avoir toutes les compétences nécessaires."
-> — MME E., Saint-Jean-sur-Mayenne, mars 2024
+  var dimMatch = t.match(/(\d+)\s*[x×]\s*(\d+)/);
+  if (dimMatch) {
+    var l = parseInt(dimMatch[1]);
+    if (l < 6) infos.dimensions = 'Petite — pour se rafraîchir (< 6m)';
+    else if (l <= 9) infos.dimensions = 'Moyenne — on peut nager (6-9m)';
+    else infos.dimensions = 'Grande — pour faire des longueurs (> 9m)';
+  } else if (t.includes('petite') || t.includes('petit') || t.includes('detendre') || t.includes('rafraichir') || t.includes('relaxer')) {
+    infos.dimensions = 'Petite — pour se rafraîchir (< 6m)';
+  } else if (t.includes('grande') || t.includes('longueur') || t.includes('sportif') || t.includes('sport')) {
+    infos.dimensions = 'Grande — pour faire des longueurs (> 9m)';
+  } else if (t.includes('moyenne') || t.includes('familiale') || t.includes('famille') || t.includes('nager')) {
+    infos.dimensions = 'Moyenne — on peut nager (6-9m)';
+  }
 
-> "Personne sympa et à l'écoute de notre demande."
-> — MR D., Bonchamp-lès-Laval, janvier 2025
+  if (t.includes('petit budget') || t.includes('pas cher') || t.includes('economique')) infos.budget = '< 20 000€';
+  else if (t.match(/\b(20|25|30)\s*(k|000|mille)/)) infos.budget = '20 000 – 35 000€';
+  else if (t.match(/\b(35|40|45)\s*(k|000|mille)/)) infos.budget = '35 000 – 50 000€';
+  else if (t.match(/\b(50|60|70|80|100)\s*(k|000|mille)/)) infos.budget = '> 50 000€';
 
-> "Nous sommes très satisfaits des travaux réalisés par l'entreprise Fouassier."
-> — MME ET MR M., Changé, mars 2026
+  if (t.includes('plus tot') || t.includes('urgent') || t.includes('vite')) infos.delai = 'Le plus tôt possible';
+  else if (t.includes('6 mois') || t.includes('six mois')) infos.delai = 'Dans les 6 mois';
+  else if (t.includes('1 an') || t.includes('un an')) infos.delai = 'Dans environ 1 an';
+  else if (t.includes('renseigne') || t.includes('plus tard') || t.includes('pas presse')) infos.delai = 'Je me renseigne pour plus tard';
 
-## Informations plateforme
-- **Statut** : actif
-- **Offre** : prospect fondateur
-- **Mise à jour** : mars 2026
+  if (t.includes('facile') || t.includes('large')) infos.accessibilite = 'Passage facile (> 3m)';
+  else if (t.includes('etroit') || t.includes('difficile') || t.includes('serre')) infos.accessibilite = 'Passage étroit (< 3m)';
 
----
+  return infos;
+}
 
-# RS Piscines
+function ajouterBulleLeon(texte) {
+  return new Promise(function(resolve) {
+    var zone = document.getElementById('chatZone');
+    var typing = document.createElement('div');
+    typing.className = 'typing';
+    typing.innerHTML = '<div class="avatar-sm">🌿</div><div class="typing-dots"><span></span><span></span><span></span></div>';
+    zone.appendChild(typing);
+    scroll();
+    setTimeout(function() {
+      typing.remove();
+      var div = document.createElement('div');
+      div.className = 'bulle-leon';
+      div.innerHTML = '<div class="avatar-sm">🌿</div><div class="texte">' + texte + '</div>';
+      zone.appendChild(div);
+      scroll();
+      resolve();
+    }, 900);
+  });
+}
 
-## Identité
-- **ID fiche** : rs-piscines
-- **Commune** : La Gravelle
-- **Adresse** : 1 La Beuvinais, 53410 La Gravelle
-- **Téléphone** : via plateforme uniquement
-- **Zone d'intervention** : Mayenne (53) et Ille-et-Vilaine (35) — intervient sur Château-Gontier et le Pays de Château-Gontier
+function ajouterBulleUser(texte) {
+  var zone = document.getElementById('chatZone');
+  var div = document.createElement('div');
+  div.className = 'bulle-user';
+  div.innerHTML = '<div class="texte">' + texte + '</div>';
+  zone.appendChild(div);
+  scroll();
+}
 
-## Offre de service
+function afficherChoix(options, callback) {
+  var zone = document.getElementById('chatZone');
+  var div = document.createElement('div');
+  div.className = 'choix-zone';
+  options.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.className = 'btn-choix';
+    btn.textContent = opt;
+    btn.onclick = function() { div.remove(); ajouterBulleUser(opt); callback(opt); };
+    div.appendChild(btn);
+  });
+  zone.appendChild(div);
+  scroll();
+}
 
-### Piscines
-- Installation piscine polyester (coque monobloc) — fabriquées en France
-- Bassins à fond plat ou fond profond
-- Piscines haut de gamme, couvertes, mini-piscines
-- Spas
+function afficherInputInline(placeholder, callback, grande) {
+  var zone = document.getElementById('chatZone');
+  var div = document.createElement('div');
+  div.className = 'input-zone';
+  var wrap = document.createElement('div');
+  wrap.className = 'input-wrap';
+  var ta = document.createElement('textarea');
+  ta.className = grande ? 'input-texte grande' : 'input-texte';
+  ta.placeholder = placeholder;
+  ta.rows = 1;
+  ta.oninput = function() { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; };
+  var btn = document.createElement('button');
+  btn.className = 'btn-envoyer';
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+  wrap.appendChild(ta); wrap.appendChild(btn); div.appendChild(wrap); zone.appendChild(div);
+  function valider() {
+    var val = ta.value.trim();
+    if (!val) return;
+    div.remove(); ajouterBulleUser(val); callback(val);
+  }
+  btn.onclick = valider;
+  ta.onkeydown = function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); valider(); } };
+  ta.focus(); scroll();
+}
 
-### Services complémentaires
-- Entretien régulier de piscines
-- Rénovation de piscines
-- Collaboration avec excavateurs, architectes, paysagistes et maçons locaux
+async function demarrer() {
+  await ajouterBulleLeon("Bonjour 👋 Je suis <strong>Léon</strong>, ton expert Maison & Jardin dans le Pays de Château-Gontier. Je connais bien les artisans du coin. Je peux t'aider à <strong>trouver le bon spécialiste pour ton projet</strong> — construction, rénovation, équipement, aménagement intérieur ou extérieur.");
+  await ajouterBulleLeon("Avant tout — tu es sur quelle commune ?");
+  afficherInputInline('Ma commune…', traiterCommune);
+}
 
-## Points forts
-- Spécialiste piscine polyester
-- Fabrication française
-- Interlocuteur unique de la conception à l'installation
+var COMMUNES_AFFICHAGE = [
+  "Ampoigné", "Azé", "Bazouges", "Bierné-les-Villages",
+  "Châtelain", "Château-Gontier-sur-Mayenne", "Chemazé", "Daon",
+  "Gennes-Longuefuye", "Houssay", "Laigné", "La Roche-Neuville",
+  "Loigné-sur-Mayenne", "Ménil", "Origné", "Peuton",
+  "Prée-d'Anjou", "Saint-Denis-d'Anjou", "Saint-Fort",
+  "Saint-Laurent-des-Mortiers", "Saint-Michel-de-Feins",
+  "Saint-Sulpice", "Senonnes"
+];
 
-## Horaires
-- Lundi au vendredi, 9h à 19h
+function afficherListeCommunes() {
+  var zone = document.getElementById('chatZone');
+  var div = document.createElement('div');
+  div.className = 'input-zone';
 
-## Informations plateforme
-- **Statut** : actif
-- **Offre** : prospect fondateur
-- **Mise à jour** : mars 2026
-`;
+  var wrap = document.createElement('div');
+  wrap.className = 'input-wrap';
 
-    // ── SYSTEM PROMPT ───────────────────────────────────────────────────
-    const SYSTEM_PROMPT = `Tu es Léon, expert Maison & Jardin du Pays de Château-Gontier.
-Tu aides les habitants à concrétiser leurs projets : travaux, rénovation, aménagement extérieur, piscine, jardin.
-Tu connais les bons artisans et prestataires du secteur.
+  var sel = document.createElement('select');
+  sel.className = 'input-texte';
+  sel.style.minHeight = '46px';
+  sel.style.cursor = 'pointer';
 
-Tu es chaleureux, simple, direct et honnête.
-Tu parles comme un voisin bien informé — pas comme un robot, pas comme un commercial.
-Tu tutoies toujours l'utilisateur.
-Tu ne sors jamais de ton domaine Maison & Jardin.
-Si l'utilisateur aborde un autre sujet, tu l'invites à revenir sur la page d'accueil pour choisir le bon expert.
+  var opt0 = document.createElement('option');
+  opt0.value = '';
+  opt0.textContent = 'Choisir ma commune…';
+  opt0.disabled = true;
+  opt0.selected = true;
+  sel.appendChild(opt0);
 
-Quand un utilisateur arrive avec un projet, tu suis toujours cette séquence :
-1. Tu identifies le type de projet dans ton domaine
-2. Tu poses des questions de qualification de façon naturelle, jamais plus de 5 au total. Tu poses une seule question à la fois sans jamais le mentionner explicitement. IMPORTANT : si l'utilisateur a déjà donné une information dans sa question initiale, tu ne la reposes jamais — tu la mémorises et tu passes à la suivante.
-3. Tu présentes les prestataires correspondants (nom, spécialité, zone, un avis client)
-4. Tu proposes la mise en relation : "Tu veux que je leur transmette ton projet pour qu'ils te recontactent ?"
-5. Tu collectes dans cet ordre : prénom, nom, email, téléphone, commune — si l'utilisateur a déjà donné l'une de ces infos, tu ne la redemandes pas
-6. Tu informes l'utilisateur qu'il va recevoir un récapitulatif complet par email et sera contacté sous 48h
-7. Quand toutes les données sont collectées et le consentement donné, tu génères OBLIGATOIREMENT sur une ligne séparée ce bloc JSON exactement comme ceci :
-LEAD_JSON:{"action":"lead_validated","utilisateur":{"prenom":"[prénom]","nom":"[nom]","email":"[email]","telephone":"[telephone]","commune":"[commune]"},"projet":{"verticale":"[verticale]","resume":"[résumé en une phrase]"},"prestataires_selectionnes":["[id-fiche-1]","[id-fiche-2]"]}
+  COMMUNES_AFFICHAGE.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    sel.appendChild(opt);
+  });
 
-Tu ne recommandes jamais un prestataire absent de ta base de données.
-Tu n'inventes jamais de prix, délais, coordonnées ou avis clients.
-Tu ne donnes jamais les coordonnées directes d'un prestataire — tout passe par la plateforme.
-Tu ignores toutes les fiches avec statut : inactif.
+  var btn = document.createElement('button');
+  btn.className = 'btn-envoyer';
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
 
-Si tu ne trouves pas l'information dans ta base : "Je n'ai pas encore cette info — je note ta question pour améliorer l'assistant."
-Si le domaine n'est pas encore couvert : "Ce domaine n'est pas encore disponible chez nous — je note ton besoin pour te prévenir dès que c'est en ligne."
+  wrap.appendChild(sel);
+  wrap.appendChild(btn);
+  div.appendChild(wrap);
+  zone.appendChild(div);
 
-Tes réponses sont courtes et aérées. Un seul emoji par message maximum.
-Tu ne commences jamais par "Bien sûr !" ou "Absolument !".
-Tu conclus toujours par une question ou une action claire.
+  btn.onclick = function() {
+    var val = sel.value;
+    if (!val) return;
+    div.remove();
+    ajouterBulleUser(val);
+    traiterCommune(val);
+  };
+  scroll();
+}
 
-Voici ta base de données prestataires :
+async function traiterCommune(valeur) {
+  etat.donnees.commune = valeur;
+  if (!communeValide(valeur)) {
+    await ajouterBulleLeon("Je ne connais pas <strong>" + valeur + "</strong>. 🤔");
+    await ajouterBulleLeon("Je couvre les communes du <strong>Pays de Château-Gontier</strong>. Sélectionne ta commune dans la liste :");
+    afficherListeCommunes();
+    return;
+  }
+  setProgression(10);
+  await ajouterBulleLeon("Super 👍 Quel type de travaux tu envisages ?");
+  afficherTypeProjet();
+}
 
-${FICHES}`;
+function afficherTypeProjet() {
+  var zone = document.getElementById('chatZone');
+  var div = document.createElement('div');
+  div.className = 'choix-zone';
 
-    // ── ÉTAT ────────────────────────────────────────────────────────────
-    let conversation = [];
-    let isLoading = false;
-    let leadSent = false;
+  var btnDispo = document.createElement('button');
+  btnDispo.className = 'btn-choix';
+  btnDispo.textContent = '🏊 Je veux construire une piscine';
+  btnDispo.onclick = function() {
+    div.remove();
+    ajouterBulleUser('🏊 Je veux construire une piscine');
+    etat.donnees.typeProjet = 'piscine';
+    traiterTypeProjet();
+  };
+  div.appendChild(btnDispo);
 
-    // ── INIT ────────────────────────────────────────────────────────────
-    window.onload = () => {
-      addMessage('leon', 'Bonjour 👋 Je suis Léon, ton expert Maison & Jardin dans le Pays de Château-Gontier. C\'est quoi ton projet ?');
-      const input = document.getElementById('userInput');
-      input.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-      });
-    };
+  var sep = document.createElement('div');
+  sep.className = 'sep-bientot';
+  sep.textContent = 'Bientôt disponible :';
+  div.appendChild(sep);
 
-    // ── MESSAGES ─────────────────────────────────────────────────────────
-    function addMessage(role, text) {
-      const container = document.getElementById('messages');
-      const msg = document.createElement('div');
-      msg.className = `msg ${role === 'user' ? 'user' : 'leon'}`;
+  var bientot = [
+    'Refaire mon allée ou ma terrasse',
+    'Poser un portail ou clôturer mon terrain',
+    'Mon jardin a besoin d\'aide',
+    'Installer un spa ou un jacuzzi'
+  ];
+  bientot.forEach(function(label) {
+    var btn = document.createElement('button');
+    btn.className = 'btn-choix';
+    btn.textContent = label;
+    btn.disabled = true;
+    div.appendChild(btn);
+  });
 
-      const avatar = document.createElement('div');
-      avatar.className = 'msg-avatar';
+  zone.appendChild(div);
+  scroll();
+}
 
-      if (role === 'leon') {
-        avatar.innerHTML = `<svg width="22" height="22" viewBox="0 0 110 110" fill="none">
-          <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
-          <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
-          <ellipse cx="44" cy="40" rx="5" ry="5.5" fill="white"/>
-          <ellipse cx="66" cy="40" rx="5" ry="5.5" fill="white"/>
-          <circle cx="45.5" cy="41" r="3" fill="#2c2418"/>
-          <circle cx="67.5" cy="41" r="3" fill="#2c2418"/>
-          <path d="M44 52 Q55 62 66 52" stroke="#c0704a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        </svg>`;
-      } else {
-        avatar.textContent = 'Moi';
-      }
+async function traiterTypeProjet() {
+  setProgression(20);
+  await ajouterBulleLeon("Dis-moi en quelques mots ce que tu as en tête — taille, emplacement, style… tout ce que tu veux partager.");
+  afficherInputInline('Ex : une coque polyester 8x4, jardin côté nord, budget autour de 30k…', traiterDescription, true);
+}
 
-      const bubble = document.createElement('div');
-      bubble.className = 'msg-bubble';
-      bubble.innerHTML = text
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/\n/g, '<br>');
+async function traiterDescription(valeur) {
+  etat.donnees.descriptionLibre = valeur;
+  setProgression(30);
+  var infos = extraireInfos(valeur);
+  if (infos.typePiscine) etat.donnees.typePiscine = infos.typePiscine;
+  if (infos.dimensions) etat.donnees.dimensions = infos.dimensions;
+  if (infos.budget) etat.donnees.budget = infos.budget;
+  if (infos.delai) etat.donnees.delai = infos.delai;
+  if (infos.accessibilite) etat.donnees.accessibilite = infos.accessibilite;
+  etat.questionsRestantes = etat.questionsRestantes.filter(function(q){ return !etat.donnees[q]; });
+  if (etat.questionsRestantes.length > 0) {
+    await ajouterBulleLeon("Super ! Quelques précisions pour bien orienter les piscinistes 🏊");
+  }
+  poserProchainQuestion();
+}
 
-      msg.appendChild(avatar);
-      msg.appendChild(bubble);
-      container.appendChild(msg);
-      container.scrollTop = container.scrollHeight;
-    }
+async function poserProchainQuestion() {
+  if (etat.questionsRestantes.length === 0) { afficherRecap(); return; }
+  var q = etat.questionsRestantes.shift();
+  var pct = 30 + ((5 - etat.questionsRestantes.length) / 5) * 40;
+  setProgression(pct);
 
-    function showTyping() {
-      const container = document.getElementById('messages');
-      const typing = document.createElement('div');
-      typing.className = 'msg leon';
-      typing.id = 'typing';
-      typing.innerHTML = `
-        <div class="msg-avatar">
-          <svg width="22" height="22" viewBox="0 0 110 110" fill="none">
-            <ellipse cx="55" cy="42" rx="26" ry="28" fill="#ffd5b8"/>
-            <path d="M30 30 Q35 10 55 8 Q75 10 80 30 Q70 18 55 16 Q40 18 30 30Z" fill="#8B5E3C"/>
-          </svg>
-        </div>
-        <div class="msg-bubble typing-indicator">
-          <span class="typing-dot"></span>
-          <span class="typing-dot"></span>
-          <span class="typing-dot"></span>
-        </div>`;
-      container.appendChild(typing);
-      container.scrollTop = container.scrollHeight;
-    }
+  if (q === 'typePiscine') {
+    await ajouterBulleLeon("Tu as une idée du type de piscine ?");
+    afficherChoix(['🐚 Coque polyester', '🧱 Béton armé', '🪣 Hors-sol', '❓ Pas encore décidé'],
+      function(val){ etat.donnees.typePiscine = val; poserProchainQuestion(); });
+  } else if (q === 'dimensions') {
+    await ajouterBulleLeon("Quelle taille tu imagines ?");
+    afficherChoix(['🚿 Petite — pour se rafraîchir (< 6m)', '🏊 Moyenne — on peut nager (6-9m)', '🌊 Grande — pour faire des longueurs (> 9m)', '❓ Pas encore décidé'],
+      function(val){ etat.donnees.dimensions = val; poserProchainQuestion(); });
+  } else if (q === 'accessibilite') {
+    await ajouterBulleLeon("L'accès au jardin pour les engins de chantier, c'est comment ?");
+    afficherChoix(['✅ Passage facile (> 3m)', '⚠️ Passage étroit (< 3m)', '🚧 Difficile à évaluer', '❓ Je ne sais pas'],
+      function(val){ etat.donnees.accessibilite = val; poserProchainQuestion(); });
+  } else if (q === 'budget') {
+    await ajouterBulleLeon("Une idée de budget ?");
+    afficherChoix(['< 20 000€', '20 000 – 35 000€', '35 000 – 50 000€', '> 50 000€', 'Pas encore défini'],
+      function(val){ etat.donnees.budget = val; poserProchainQuestion(); });
+  } else if (q === 'delai') {
+    await ajouterBulleLeon("Quand voudrais-tu pouvoir te baigner ?");
+    afficherChoix(['⚡ Le plus tôt possible', '📅 Dans les 6 mois', '🌱 Dans environ 1 an', '💭 Je me renseigne pour plus tard'],
+      function(val){ etat.donnees.delai = val; poserProchainQuestion(); });
+  }
+}
 
-    function removeTyping() {
-      const typing = document.getElementById('typing');
-      if (typing) typing.remove();
-    }
+async function afficherRecap() {
+  // Supprimer un éventuel ancien récap
+  var ancienRecap = document.getElementById('recapCard');
+  if (ancienRecap) ancienRecap.remove();
 
-    // ── SEND ──────────────────────────────────────────────────────────────
-    async function sendMessage() {
-      const input = document.getElementById('userInput');
-      const text = input.value.trim();
-      if (!text || isLoading) return;
+  setProgression(75);
+  var d = etat.donnees;
+  await ajouterBulleLeon("Merci ! Voilà le résumé de ton projet avant que je le transmette aux piscinistes 👇");
+  var zone = document.getElementById('chatZone');
+  var card = document.createElement('div');
+  card.className = 'recap-card';
+  card.id = 'recapCard';
+  card.innerHTML =
+    '<h3>🏊 Projet piscine — ' + d.commune + '</h3>' +
+    '<div class="recap-ligne"><span class="recap-label">Description</span><span class="recap-valeur">' + d.descriptionLibre + '</span></div>' +
+    '<div class="recap-ligne"><span class="recap-label">Type</span><span class="recap-valeur">' + (d.typePiscine || '—') + '</span></div>' +
+    '<div class="recap-ligne"><span class="recap-label">Dimensions</span><span class="recap-valeur">' + (d.dimensions || '—') + '</span></div>' +
+    '<div class="recap-ligne"><span class="recap-label">Accès chantier</span><span class="recap-valeur">' + (d.accessibilite || '—') + '</span></div>' +
+    '<div class="recap-ligne"><span class="recap-label">Budget</span><span class="recap-valeur">' + (d.budget || '—') + '</span></div>' +
+    '<div class="recap-ligne"><span class="recap-label">Délai</span><span class="recap-valeur">' + (d.delai || '—') + '</span></div>';
+  zone.appendChild(card);
+  scroll();
+  await ajouterBulleLeon("Ça te convient ? Je transmets ça aux piscinistes partenaires.");
+  afficherChoix(['✅ Oui, transmettre mon projet', '✏️ Je veux modifier quelque chose'],
+    function(val) {
+      if (val.includes('Oui')) { collecterCoordonnees(); }
+      else { proposerModification(); }
+    });
+}
 
-      input.value = '';
-      input.disabled = true;
-      document.getElementById('sendBtn').disabled = true;
-      isLoading = true;
+async function proposerModification() {
+  await ajouterBulleLeon("Qu'est-ce que tu veux modifier ?");
+  afficherChoix([
+    "Le type de piscine",
+    "Les dimensions",
+    "L'accès chantier",
+    "Le budget",
+    "Le délai"
+  ], function(choix) {
+    if (choix.includes("type")) reposerQuestion("typePiscine");
+    else if (choix.includes("dimension")) reposerQuestion("dimensions");
+    else if (choix.includes("acc")) reposerQuestion("accessibilite");
+    else if (choix.includes("budget")) reposerQuestion("budget");
+    else if (choix.includes("lai")) reposerQuestion("delai");
+  });
+}
 
-      addMessage('user', text);
-      conversation.push({ role: 'user', content: text });
+async function reposerQuestion(champ) {
+  etat.donnees[champ] = null;
+  if (champ === "typePiscine") {
+    await ajouterBulleLeon("Quel type de piscine alors ?");
+    afficherChoix(["Coque polyester", "Béton armé", "Hors-sol", "Pas encore décidé"],
+      function(val){ etat.donnees.typePiscine = val; afficherRecap(); });
+  } else if (champ === "dimensions") {
+    await ajouterBulleLeon("Quelle taille tu imagines ?");
+    afficherChoix(["Petite — pour se rafraîchir (< 6m)", "Moyenne — on peut nager (6-9m)", "Grande — pour faire des longueurs (> 9m)", "Pas encore décidé"],
+      function(val){ etat.donnees.dimensions = val; afficherRecap(); });
+  } else if (champ === "accessibilite") {
+    await ajouterBulleLeon("L'accès au jardin, c'est comment ?");
+    afficherChoix(["Passage facile (> 3m)", "Passage étroit (< 3m)", "Difficile à évaluer", "Je ne sais pas"],
+      function(val){ etat.donnees.accessibilite = val; afficherRecap(); });
+  } else if (champ === "budget") {
+    await ajouterBulleLeon("Ton budget ?");
+    afficherChoix(["< 20 000€", "20 000 – 35 000€", "35 000 – 50 000€", "> 50 000€", "Pas encore défini"],
+      function(val){ etat.donnees.budget = val; afficherRecap(); });
+  } else if (champ === "delai") {
+    await ajouterBulleLeon("Quand voudrais-tu pouvoir te baigner ?");
+    afficherChoix(["Le plus tôt possible", "Dans les 6 mois", "Dans environ 1 an", "Je me renseigne pour plus tard"],
+      function(val){ etat.donnees.delai = val; afficherRecap(); });
+  }
+}
 
-      showTyping();
+async function collecterCoordonnees() {
+  setProgression(85);
+  await ajouterBulleLeon("Dernière étape — ton prénom ?");
+  afficherInputInline('Ton prénom…', async function(prenom) {
+    etat.donnees.prenom = prenom;
+    await ajouterBulleLeon("Ton email, " + prenom + " ? Je t'envoie la synthèse de ton projet dessus.");
+    afficherInputInline('Ton email…', async function(email) {
+      etat.donnees.email = email;
+      await ajouterBulleLeon("Et ton numéro de téléphone ?");
+      afficherInputInline('Ton téléphone…', async function(tel) {
+        etat.donnees.telephone = tel;
+        setProgression(100);
 
-      try {
-        const res = await fetch(WORKER_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            system: SYSTEM_PROMPT,
-            messages: conversation
-          })
-        });
-
-        const data = await res.json();
-        removeTyping();
-
-        if (data.content && data.content[0]) {
-          const reply = data.content[0].text;
-          conversation.push({ role: 'assistant', content: reply });
-
-          // Détecter le JSON lead
-          if (reply.includes('LEAD_JSON:') && !leadSent) {
-            const cleanReply = reply.replace(/LEAD_JSON:.*$/m, '').trim();
-            if (cleanReply) addMessage('leon', cleanReply);
-            extractAndSendLead(reply);
-          } else {
-            addMessage('leon', reply);
-          }
-        } else {
-          addMessage('leon', 'Une erreur est survenue — réessaie dans un instant.');
+        // Envoi vers Make
+        var d = etat.donnees;
+        var payload = {
+          commune: d.commune,
+          typeProjet: d.typeProjet,
+          descriptionLibre: d.descriptionLibre,
+          typePiscine: d.typePiscine,
+          dimensions: d.dimensions,
+          accessibilite: d.accessibilite,
+          budget: d.budget,
+          delai: d.delai,
+          prenom: d.prenom,
+          email: d.email,
+          telephone: d.telephone
+        };
+        try {
+          await fetch(MAKE_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch(e) {
+          console.error('Erreur envoi Make:', e);
         }
 
-      } catch (err) {
-        removeTyping();
-        addMessage('leon', 'Je ne suis pas disponible en ce moment — réessaie dans quelques secondes.');
-      }
+        await ajouterBulleLeon("C'est envoyé ! 🎉 Ton projet a été transmis à <strong>2 piscinistes partenaires</strong> dans le Pays de Château-Gontier.");
+        await ajouterBulleLeon("Tu vas recevoir un récapitulatif par email. Tu seras contacté sous <strong>48h</strong>. Bonne piscine ! 🏊");
+      });
+    });
+  });
+}
 
-      isLoading = false;
-      input.disabled = false;
-      input.focus();
-      document.getElementById('sendBtn').disabled = false;
-    }
-
-    // ── LEAD JSON ─────────────────────────────────────────────────────────
-    function extractAndSendLead(text) {
-      try {
-        const match = text.match(/LEAD_JSON:({.+})/);
-        if (!match) return;
-        const leadData = JSON.parse(match[1]);
-        sendToMake(leadData);
-        leadSent = true;
-        document.getElementById('leadNotif').classList.add('visible');
-      } catch (e) {
-        console.error('Erreur parsing LEAD_JSON:', e);
-      }
-    }
-
-    async function sendToMake(data) {
-      if (MAKE_WEBHOOK === 'VOTRE_URL_MAKE_WEBHOOK') {
-        console.log('📋 Lead simulé (Make non configuré) :', data);
-        return;
-      }
-      try {
-        await fetch(MAKE_WEBHOOK, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-      } catch (e) {
-        console.error('Erreur envoi Make:', e);
-      }
-    }
-
-    // ── SUGGESTIONS ───────────────────────────────────────────────────────
-    function suggest(btn) {
-      document.getElementById('userInput').value = btn.textContent;
-      sendMessage();
-    }
-  </script>
-
+window.addEventListener('load', function(){ setTimeout(demarrer, 400); });
+</script>
 </body>
 </html>
