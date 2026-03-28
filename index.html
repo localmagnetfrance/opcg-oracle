@@ -27,7 +27,7 @@
   --shadow-hover:0 6px 28px rgba(15,74,64,.14);
 }
 
-html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
+html,html,body{margin:0;padding:0;width:100%}body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
 
 /* ── GRAIN ── */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
@@ -37,7 +37,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 /* ── CARD ── */
 .card{background:var(--card);border-radius:20px;box-shadow:var(--shadow);width:100%;max-width:520px;overflow:hidden;display:flex;flex-direction:column;max-height:calc(100vh - 40px)}
-@media(max-width:540px){body{padding:0;justify-content:flex-start}.card{border-radius:0;max-width:100%;min-height:100vh;max-height:none}}
+@media(max-width:768px){html,body{margin:0;padding:0;width:100%;overflow-x:hidden}body{justify-content:flex-start;align-items:stretch}.shell{padding:0;width:100%;min-height:100vh;align-items:stretch}.card{border-radius:0;width:100%;max-width:100%;min-height:100vh;max-height:none;box-shadow:none;margin:0}.screen-in{padding:14px 16px}.choices{gap:8px}.choice{padding:11px 12px}}
 
 /* ── TOP BAR ── */
 .topbar{background:var(--teal-dark);padding:18px 22px 14px;display:flex;align-items:center;gap:14px;flex-shrink:0}
