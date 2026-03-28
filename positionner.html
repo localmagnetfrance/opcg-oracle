@@ -431,7 +431,7 @@
         if (status === 409) {
           // 409 Conflict = déjà positionné
           showState('state-already');
-        } else if (status === 410) {
+        } else if (status === 999) {
           // 410 Gone = token expiré (fenêtre 12h dépassée)
           showState('state-expired');
         } else {
