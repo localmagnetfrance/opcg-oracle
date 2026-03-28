@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Se positionner — Local Magnet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --cream: #fff8ef;
+    --orange: #f58732;
+    --orange-dark: #d96e1a;
+    --orange-light: #fde8cc;
+    --text: #1a1207;
+    --text-muted: #7a6a55;
+    --success: #2d7a4f;
+    --success-bg: #edf7f2;
+    --error: #c0392b;
+    --error-bg: #fdf0ee;
+    --border: #e8d9c4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .logo {
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+    color: var(--orange);
+    margin-bottom: 40px;
+    letter-spacing: -0.3px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 32px rgba(245, 135, 50, 0.08);
+  }
+
+  /* État loading */
+  .state { display: none; }
+  .state.active { display: block; }
+
+  /* Loading */
+  #state-loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--orange-light);
+    border-top-color: var(--orange);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 24px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #state-loading p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* Confirmation */
+  #state-confirm .icon-wrap {
+    width: 64px;
+    height: 64px;
+    background: var(--success-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes pop {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  #state-confirm .icon-wrap svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--success);
+  }
+
+  #state-confirm h1 {
+    font-family: 'Newsreader', serif;
+    font-size: 26px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  #state-confirm .subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .brief-recap {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+
+  .brief-recap .label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  .brief-recap .presta-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .brief-recap .brief-detail {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .info-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .chip {
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
+
+  .note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 20px;
+  }
+
+  /* Erreur déjà positionné */
+  #state-already .icon-wrap {
+    width: 64px;
+    height: 64px;
+    background: var(--orange-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+  }
+  #state-already .icon-wrap svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--orange);
+  }
+  #state-already h1 {
+    font-family: 'Newsreader', serif;
+    font-size: 24px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  #state-already p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Erreur token expiré */
+  #state-expired .icon-wrap {
+    width: 64px;
+    height: 64px;
+    background: var(--error-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+  }
+  #state-expired .icon-wrap svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--error);
+  }
+  #state-expired h1 {
+    font-family: 'Newsreader', serif;
+    font-size: 24px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  #state-expired p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Erreur générique */
+  #state-error .icon-wrap {
+    width: 64px;
+    height: 64px;
+    background: var(--error-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+  }
+  #state-error .icon-wrap svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--error);
+  }
+  #state-error h1 {
+    font-family: 'Newsreader', serif;
+    font-size: 24px;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  #state-error p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .btn-retry {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-retry:hover { background: var(--orange-dark); }
+
+  .footer {
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="logo">Local Magnet</div>
+
+<div class="card">
+
+  <!-- LOADING -->
+  <div id="state-loading" class="state active">
+    <div class="spinner"></div>
+    <p>Enregistrement de votre positionnement…</p>
+  </div>
+
+  <!-- SUCCÈS -->
+  <div id="state-confirm" class="state">
+    <div class="icon-wrap">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+      </svg>
+    </div>
+    <h1>Vous êtes positionné !</h1>
+    <p class="subtitle">Votre demande a bien été enregistrée. Si vous faites partie des prestataires sélectionnés, vous recevrez les coordonnées du prospect <strong>à 12h00</strong>.</p>
+
+    <div class="brief-recap">
+      <div class="label">Votre positionnement</div>
+      <div class="presta-name" id="recap-nom"></div>
+      <div class="brief-detail" id="recap-brief"></div>
+    </div>
+
+    <div class="info-chips">
+      <span class="chip">⏰ Attribution à 12h00</span>
+      <span class="chip">🎯 Max 4 prestataires</span>
+    </div>
+
+    <p class="note">Vous recevrez un email de confirmation quelle que soit l'issue de la sélection.</p>
+  </div>
+
+  <!-- DÉJÀ POSITIONNÉ -->
+  <div id="state-already" class="state">
+    <div class="icon-wrap">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+      </svg>
+    </div>
+    <h1>Déjà enregistré</h1>
+    <p>Vous vous êtes déjà positionné sur ce projet. Votre demande est bien prise en compte — pas besoin de cliquer à nouveau.<br><br>Résultat de la sélection à <strong>12h00</strong>.</p>
+  </div>
+
+  <!-- TOKEN EXPIRÉ -->
+  <div id="state-expired" class="state">
+    <div class="icon-wrap">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+    </div>
+    <h1>Fenêtre de positionnement fermée</h1>
+    <p>La fenêtre de positionnement pour ce projet s'est terminée à 12h00. Les prestataires sélectionnés ont déjà été notifiés.<br><br>Vous recevrez le prochain brief demain matin à <strong>6h45</strong>.</p>
+  </div>
+
+  <!-- ERREUR GÉNÉRIQUE -->
+  <div id="state-error" class="state">
+    <div class="icon-wrap">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+      </svg>
+    </div>
+    <h1>Une erreur est survenue</h1>
+    <p>Impossible d'enregistrer votre positionnement. Réessayez dans quelques instants ou contactez l'opérateur.</p>
+    <button class="btn-retry" onclick="retry()">Réessayer</button>
+  </div>
+
+</div>
+
+<div class="footer">Local Magnet · Pays de Château-Gontier</div>
+
+<script>
+  // =====================================================
+  // CONFIGURATION — à adapter
+  // =====================================================
+  const WEBHOOK_POSITIONNEMENT = 'https://hook.eu1.make.com/VOTRE_WEBHOOK_SCENARIO_3';
+  // =====================================================
+
+  const params = new URLSearchParams(window.location.search);
+  const brief  = params.get('brief');   // UUID du brief
+  const email  = params.get('email');   // Email prestataire
+  const nom    = params.get('nom');     // Nom prestataire
+  const token  = params.get('token');   // Token anti-double-clic
+
+  function showState(id) {
+    document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function retry() {
+    showState('state-loading');
+    sendPositionnement();
+  }
+
+  function populateRecap() {
+    document.getElementById('recap-nom').textContent = decodeURIComponent(nom || '');
+    // Le brief détail sera rempli par la réponse Make si besoin
+    // Pour l'instant on affiche juste le brief ID court
+    const briefShort = brief ? brief.substring(0, 8).toUpperCase() : '';
+    document.getElementById('recap-brief').textContent = 'Réf. projet : ' + briefShort;
+  }
+
+  async function sendPositionnement() {
+    // Vérification des paramètres obligatoires
+    if (!brief || !email || !token) {
+      showState('state-error');
+      return;
+    }
+
+    try {
+      const response = await fetch(WEBHOOK_POSITIONNEMENT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'positionnement',
+          brief_id: brief,
+          email_presta: decodeURIComponent(email),
+          nom_presta: decodeURIComponent(nom || ''),
+          token: token,
+          horodatage: new Date().toISOString()
+        })
+      });
+
+      if (!response.ok) {
+        // Make renvoie des codes HTTP spécifiques selon le cas
+        const status = response.status;
+        if (status === 409) {
+          // 409 Conflict = déjà positionné
+          showState('state-already');
+        } else if (status === 410) {
+          // 410 Gone = token expiré (fenêtre 12h dépassée)
+          showState('state-expired');
+        } else {
+          showState('state-error');
+        }
+        return;
+      }
+
+      // Succès
+      populateRecap();
+      showState('state-confirm');
+
+    } catch (err) {
+      console.error('Erreur réseau :', err);
+      showState('state-error');
+    }
+  }
+
+  // Lancement automatique au chargement
+  sendPositionnement();
+</script>
+</body>
+</html>
