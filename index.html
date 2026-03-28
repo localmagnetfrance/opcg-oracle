@@ -757,6 +757,26 @@ function sConfirmCheck(){
 }
 
 function sConfirm(){
+  const payload = {
+    verticale: "Maison et Jardin",
+    expertise: "Piscine",
+    commune: state.commune || "",
+    typePiscine: state.typePiscine || "",
+    accessibilite: state.accessibilite || "",
+    terrainContraintes: state.terrainContraintes || "",
+    budget: state.budget || "",
+    delai: state.delai || "",
+    prenom: state.prenom || "",
+    nom: state.nom || "",
+    email: state.email || "",
+    tel: state.tel || "",
+    dateDepot: new Date().toISOString()
+  };
+  fetch("WEBHOOK_URL_ICI", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  }).catch(()=>{});
   screen.innerHTML=`<div class="screen-in"><div class="confirm-wrap">
     <div class="confirm-circle"><div class="confirm-ico">🏊</div></div>
     <div class="confirm-h">Ton projet est entre de bonnes mains.</div>
