@@ -126,6 +126,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .cta.secondary{background:#fff;color:var(--teal);border:1.5px solid var(--teal);box-shadow:none}
 .cta.secondary:hover{background:var(--teal-light)}
 
+
 .process-steps{display:flex;align-items:flex-start;margin:8px 0 20px;position:relative}
 .process-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
 .process-step:not(:last-child)::after{content:'';position:absolute;top:20px;left:calc(50% + 20px);right:calc(-50% + 20px);height:2px;background:var(--border);z-index:0}
@@ -170,14 +171,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="card" id="card">
     <div class="topbar">
       <div class="avatar-wrap">
-        <img id="topAvatar" alt="" class="avatar" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top">
+        <img src="data:image/jpeg;base64,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" alt="Léon" class="avatar" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top">
         <div class="avatar-fallback" id="topFb" style="display:none">L</div>
         <div class="online-dot"></div>
       </div>
       <div class="topbar-info">
-        <div class="topbar-name" id="topName"></div>
-        <div class="topbar-sub" id="topSub"></div>
-        <span class="badge" id="topBadge"></span>
+        <div class="topbar-name">Léon</div>
+        <div class="topbar-sub">Expert Maison &amp; Jardin · Pays de Château-Gontier</div>
+        <span class="badge">Projet Piscine</span>
       </div>
     </div>
     <div class="prog-wrap"><div class="prog-bar" id="prog" style="width:8%"></div></div>
@@ -190,156 +191,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════
-   CONFIG — seule section à modifier pour chaque expertise
-   ═══════════════════════════════════════════════════════ */
-const CONFIG = {
+const TOTAL_STEPS = 7;
 
-  /* ── Persona ── */
-  persona: {
-    nom: "Léon",
-    sub: "Expert Maison & Jardin · Pays de Château-Gontier",
-    badge: "Projet Piscine",
-    initialesFallback: "L",
-    avatar: "data:image/jpeg;base64,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"
-  },
-
-  /* ── Données métier ── */
-  verticale: "Maison et Jardin",
-  expertise: "Piscine",
-
-  /* ── Webhook Make ── */
-  webhook: "https://hook.eu1.make.com/npe4wnn7rhvvarsq6km3y938t7oe7l4u",
-
-  /* ── Écran d'accueil — message Léon + choix de projets ── */
-  accueil: {
-    messageIntro: "Bonjour&nbsp;! Je suis <strong>Léon</strong>, ton <strong>expert Maison &amp; Jardin à Château-Gontier</strong> et alentours. Je connais les artisans du coin et je peux t'aider à trouver le bon spécialiste pour ton projet.",
-    questionLabel: "C'est quoi ton projet ?",
-    choix: [
-      { ico: "🏊", label: "Construire ou rénover une piscine", sub: "Installation, rénovation, spa", cle: "piscine" },
-      { ico: "🌿", label: "Aménager mon jardin / extérieur", sub: "Terrasse, allée, paysagisme", cle: "jardin" },
-      { ico: "🏗️", label: "Travaux intérieur / rénovation", sub: "Plomberie, électricité, maçonnerie", cle: "travaux" },
-      { ico: "💬", label: "Autre chose", sub: "Dis-moi ton projet", cle: "autre" }
-    ],
-    cleActive: "piscine",
-    messageHorsExpertise: "En V1, je suis spécialisé sur les projets piscine et aménagement extérieur pour le Pays de Château-Gontier. Pour d'autres projets, la plateforme s'agrandit bientôt&nbsp;!"
-  },
-
-  /* ── Étape 1 — Commune ── */
-  commune: {
-    messageIntro: "Super ! Je vais te poser quelques questions rapides pour cerner ton projet et t'orienter vers les piscinistes qui correspondent le mieux à ce que tu cherches.",
-    questionLabel: "Tu es sur quelle <strong style=\"color:var(--teal)\">commune</strong> ?",
-    zoneSub: "Périmètre d'intervention : ~20 km autour de Château-Gontier"
-  },
-
-  /* ── Étapes spécifiques à l'expertise ── */
-  etapes: [
-    /* ── ÉTAPE 2 ── */
-    {
-      id: "typePiscine",
-      messageIntro: null, /* sera rempli dynamiquement avec la commune */
-      questionLabel: "Quel <strong style=\"color:var(--teal)\">type</strong> de piscine t'intéresse ?",
-      layout: "grid2",
-      choix: [
-        { ico: "🏗️", label: "Piscine coque (polyester)", titre: "Coque polyester", sub: "Rapide, économique" },
-        { ico: "🧱", label: "Piscine béton / maçonnée", titre: "Béton / maçonnée", sub: "Sur-mesure, durable" },
-        { ico: "🌊", label: "Piscine lagon / naturelle", titre: "Lagon / naturelle", sub: "Écologique, paysagère" },
-        { ico: "💭", label: "Pas encore décidé", titre: "Pas encore décidé", sub: "Je découvre" }
-      ]
-    },
-    /* ── ÉTAPE 3 — Accessibilité ── */
-    {
-      id: "accessibilite",
-      messageIntro: "Pour prévoir l'acheminement des engins, matériaux et évacuation de la terre, j'ai besoin de connaître l'accessibilité de ton terrain.",
-      questionLabel: "Comment est l'<strong style=\"color:var(--teal)\">accès</strong> à ton jardin ?",
-      layout: "list",
-      avecPrecision: true,
-      placeholderPrecision: "Précisez si besoin : largeur du passage, distance, obstacles… (optionnel)",
-      choix: [
-        { ico: "✅", label: "Accès facile", titre: "Accès facile", sub: "Portail large, accès direct depuis la rue, passage possible pour mini-pelle ou camion" },
-        { ico: "⚠️", label: "Accès limité", titre: "Accès limité", sub: "Portail étroit, passage < 1,5 m, distance importante depuis la rue…" },
-        { ico: "🚧", label: "Accès très difficile", titre: "Accès très difficile", sub: "Pas d'accès véhicule, passage uniquement à pied, maison encalvée, passage par chez un voisin…" },
-        { ico: "🤷", label: "Je ne sais pas", titre: "Je ne sais pas", sub: null }
-      ]
-    },
-    /* ── ÉTAPE 3b — Terrain (multi-choix) ── */
-    {
-      id: "terrainContraintes",
-      messageIntro: "Une dernière chose sur ton terrain avant de passer au budget.",
-      questionLabel: "Comment est ton <strong style=\"color:var(--teal)\">terrain</strong> ?",
-      layout: "list",
-      multiChoix: true,
-      choix: [
-        { ico: "✅", label: "Terrain plat et stable", titre: "Terrain plat et stable", sub: null },
-        { ico: "⛰️", label: "Terrain en pente", titre: "Terrain en pente", sub: null },
-        { ico: "🪸", label: "Terrain difficile", titre: "Terrain difficile / contraint", sub: "Sol rocheux, argile…" },
-        { ico: "🌳", label: "Presence obstacles", titre: "Présence d'obstacles", sub: "Arbres, murets, réseaux enterrés, constructions proches" },
-        { ico: "🤷", label: "Je ne sais pas", titre: "Je ne sais pas", sub: null }
-      ]
-    },
-    /* ── ÉTAPE 4 — Budget ── */
-    {
-      id: "budget",
-      messageIntro: "Pour t'orienter vers les bons prestataires, j'ai besoin de savoir dans quelle fourchette tu te situes.",
-      questionLabel: "Tu as un <strong style=\"color:var(--teal)\">budget</strong> en tête ?",
-      layout: "list",
-      choix: [
-        { ico: "💶", label: "Moins de 15 000 €", titre: "Moins de 15 000 €", sub: "Piscines hors-sol ou petites coques" },
-        { ico: "💶", label: "Entre 15 000 € et 30 000 €", titre: "Entre 15 000 € et 30 000 €", sub: "Coque polyester standard" },
-        { ico: "💶", label: "Entre 30 000 € et 60 000 €", titre: "Entre 30 000 € et 60 000 €", sub: "Béton ou coque haut de gamme" },
-        { ico: "💎", label: "Plus de 60 000 €", titre: "Plus de 60 000 €", sub: "Sur-mesure, lagon, spa" },
-        { ico: "💭", label: "Budget non défini", titre: "Pas encore défini", sub: null }
-      ]
-    },
-    /* ── ÉTAPE 5 — Délai ── */
-    {
-      id: "delai",
-      messageIntro: "Dernière question pour ton brief !",
-      questionLabel: "<strong style=\"color:var(--teal)\">Quand</strong> souhaites-tu démarrer ?",
-      layout: "list",
-      avecAutre: true,
-      choix: [
-        { ico: "⚡", label: "Dès que possible", titre: "Dès que possible", sub: "Je suis prêt à commencer l'exécution du projet" },
-        { ico: "📅", label: "D'ici 6 mois", titre: "D'ici 6 mois", sub: "Je définis la planification et le budget du projet" },
-        { ico: "🗓️", label: "D'ici 1 an ou plus", titre: "D'ici 1 an ou plus", sub: "Je compare encore, pas de délai défini" },
-        { ico: "🔨", label: "Déjà commencé", titre: "Déjà commencé", sub: "J'ai besoin de ressources supplémentaires pour un projet en cours" },
-        { ico: "💬", label: "Autre", titre: "Autre", sub: "Préciser" }
-      ]
-    }
-  ],
-
-  /* ── Récap intermédiaire (s5b) ── */
-  recap: {
-    titre: "📋 Récap projet piscine",
-    champs: [
-      { ico: "📍", label: "Commune", stateKey: "commune", etape: "s1" },
-      { ico: "🏊", label: "Type", stateKey: "typePiscine", etape: "s2" },
-      { ico: "🚧", label: "Accès", stateKey: "accessibilite", etape: "s3" },
-      { ico: "🌍", label: "Terrain", stateKey: "terrainContraintes", etape: "s3b", defaut: "Non précisé" },
-      { ico: "💶", label: "Budget", stateKey: "budget", etape: "s4" },
-      { ico: "📅", label: "Délai", stateKey: "delai", etape: "s5" }
-    ]
-  },
-
-  /* ── Coordonnées ── */
-  coordonnees: {
-    messageIntro: "Parfait, j'ai tout ce qu'il me faut sur ton projet ! Pour que les piscinistes puissent te contacter, j'ai besoin de quelques infos."
-  },
-
-  /* ── Confirmation finale ── */
-  confirmation: {
-    emoji: "🏊",
-    titre: "Ton projet est entre de bonnes mains.",
-    texte: "Les piscinistes partenaires de ta zone vont recevoir ton brief d'ici quelques heures. Ceux qui se positionnent te contacteront directement.",
-    whatsappTexte: "J%27ai%20trouv%C3%A9%20un%20outil%20sympa%20pour%20trouver%20des%20piscinistes%20dans%20le%20Pays%20de%20Ch%C3%A2teau-Gontier%20%3A%20localmagnet.fr"
-  }
-};
-/* ═══════════════════════════════════════════════════════
-   FIN CONFIG
-   ═══════════════════════════════════════════════════════ */
-
-
-/* ── Communes ── */
 const COMMUNES = [
   "Château-Gontier","Château-Gontier-sur-Mayenne","Azé","Bazouges","Saint-Fort",
   "Craon","Cossé-le-Vivien","Meslay-du-Maine","Entrammes",
@@ -356,33 +209,17 @@ const COMMUNES = [
   "Loigné","Poillé-sur-Vègre","Saint-Quentin-lès-Angers",
 ];
 
-/* ── Init topbar depuis CONFIG ── */
-(function initTopbar(){
-  const p = CONFIG.persona;
-  const img = document.getElementById('topAvatar');
-  const fb  = document.getElementById('topFb');
-  if(p.avatar){ img.src=p.avatar; img.style.display='block'; fb.style.display='none'; }
-  else { img.style.display='none'; fb.style.display='flex'; fb.textContent=p.initialesFallback; }
-  document.getElementById('topName').textContent = p.nom;
-  document.getElementById('topSub').textContent  = p.sub;
-  document.getElementById('topBadge').textContent = p.badge;
-})();
+function normalize(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[-']/g,' ')}
+function inZone(v){const n=normalize(v);return COMMUNES.some(c=>{const m=normalize(c);return m===n||m.startsWith(n)||n.startsWith(m.split(' ')[0])})}
+function findCommune(v){const n=normalize(v);return COMMUNES.find(c=>{const m=normalize(c);return m===n||m.startsWith(n)||n.startsWith(m.split(' ')[0])})||v}
 
-/* ── State ── */
-const state = {
-  step:0, commune:null,
-  typePiscine:null, accessibilite:null, terrainContraintes:null,
-  budget:null, delai:null,
-  prenom:null, nom:null, email:null, tel:null, consent:false
-};
+const state={step:0,commune:null,typePiscine:null,accessibilite:null,budget:null,delai:null,prenom:null,nom:null,email:null,tel:null,consent:false};
 
-const screen   = document.getElementById('screen');
-const prog     = document.getElementById('prog');
-const stepMeta = document.getElementById('stepMeta');
-const stepCount= document.getElementById('stepCount');
-const stepDots = document.getElementById('stepDots');
-
-const TOTAL_STEPS = 7;
+const screen=document.getElementById('screen');
+const prog=document.getElementById('prog');
+const stepMeta=document.getElementById('stepMeta');
+const stepCount=document.getElementById('stepCount');
+const stepDots=document.getElementById('stepDots');
 
 function setProgress(val,step,total){
   prog.style.width=val+'%';
@@ -395,65 +232,73 @@ function setProgress(val,step,total){
       d.className='dot'+(i<step?' done':i===step?' active':'');
       stepDots.appendChild(d);
     }
-  }else{ stepMeta.style.display='none'; }
+  }else{
+    stepMeta.style.display='none';
+  }
 }
 
-function render(html,step=0,p=8){
+function render(html,step=0,prog=8){
   screen.innerHTML='<div class="screen-in">'+html+'</div>';
-  setProgress(p,step,TOTAL_STEPS);
+  setProgress(prog,step,TOTAL_STEPS);
   screen.scrollTop=0;
 }
 
-function personaMsg(txt){
-  const p=CONFIG.persona;
-  const imgHtml = p.avatar
-    ? `<img src="${p.avatar}" alt="${p.nom}" class="leon-micro" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0">`
-    : `<div class="leon-micro-fb">${p.initialesFallback}</div>`;
-  return`<div class="leon-msg">${imgHtml}<div class="bubble">${txt}</div></div>`;
+function leonMsg(txt){
+  return`<div class="leon-msg">
+    <img src="data:image/jpeg;base64,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" alt="Léon" class="leon-micro" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0">
+    <div class="leon-micro-fb" style="display:none">L</div>
+    <div class="bubble">${txt}</div>
+  </div>`
 }
 
 function backBtn(fn){
-  return`<button class="back-btn" onclick="${fn}()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Retour</button>`;
+  return`<button class="back-btn" onclick="${fn}()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Retour</button>`
 }
 
-/* ═══════════════════════════════════════════════════════
-   ÉTAPES MOTEUR
-   ═══════════════════════════════════════════════════════ */
-
-/* ── ÉTAPE 0 — Accueil ── */
+/* ───── ÉTAPE 0 — Accueil ───── */
 function s0(){
   state.step=0;
-  const c=CONFIG.accueil;
-  const choixHtml=c.choix.map(ch=>`
-    <div class="choice" onclick="s0pick('${ch.cle}')">
-      <span class="choice-ico">${ch.ico}</span>
-      <div class="choice-txt"><strong>${ch.label}</strong><span>${ch.sub}</span></div>
-    </div>`).join('');
   render(`
-    ${personaMsg(c.messageIntro)}
-    <div class="q-label" style="margin-top:8px">${c.questionLabel}</div>
-    <div class="choices">${choixHtml}</div>
+    ${leonMsg("Bonjour&nbsp;! Je suis <strong>Léon</strong>, ton <strong>expert Maison &amp; Jardin à Château-Gontier</strong> et alentours. Je connais les artisans du coin et je peux t'aider à trouver le bon spécialiste pour ton projet.")}
+    <div class="q-label" style="margin-top:8px">C'est quoi ton projet ?</div>
+    <div class="choices">
+      <div class="choice" onclick="s0pick('piscine')">
+        <span class="choice-ico">🏊</span>
+        <div class="choice-txt"><strong>Construire ou rénover une piscine</strong><span>Installation, rénovation, spa</span></div>
+      </div>
+      <div class="choice" onclick="s0pick('jardin')">
+        <span class="choice-ico">🌿</span>
+        <div class="choice-txt"><strong>Aménager mon jardin / extérieur</strong><span>Terrasse, allée, paysagisme</span></div>
+      </div>
+      <div class="choice" onclick="s0pick('travaux')">
+        <span class="choice-ico">🏗️</span>
+        <div class="choice-txt"><strong>Travaux intérieur / rénovation</strong><span>Plomberie, électricité, maçonnerie</span></div>
+      </div>
+      <div class="choice" onclick="s0pick('autre')">
+        <span class="choice-ico">💬</span>
+        <div class="choice-txt"><strong>Autre chose</strong><span>Dis-moi ton projet</span></div>
+      </div>
+    </div>
   `,0,8);
 }
 
 function s0pick(v){
-  if(v===CONFIG.accueil.cleActive){ s1(); }
+  if(v==='piscine'){s1()}
   else{
     render(`
-      ${personaMsg(CONFIG.accueil.messageHorsExpertise)}
+      ${leonMsg("En V1, je suis spécialisé sur les projets piscine et aménagement extérieur pour le Pays de Château-Gontier. Pour d'autres projets, la plateforme s'agrandit bientôt&nbsp;!")}
       <button class="cta secondary" onclick="s0()" style="margin-top:16px">← Choisir un autre projet</button>
     `,0,8);
   }
 }
 
-/* ── ÉTAPE 1 — Commune ── */
+/* ───── ÉTAPE 1 — Commune ───── */
 function s1(){
   state.step=1;
-  const c=CONFIG.commune;
   const opts=COMMUNES.map(c=>`<option value="${c}">${c}</option>`).join('');
   render(`
-    ${personaMsg(c.messageIntro)}
-    <div class="q-label">${c.questionLabel}</div>
+    ${leonMsg("Super ! Je vais te poser quelques questions rapides pour cerner ton projet et t’orienter vers les piscinistes qui correspondent le mieux à ce que tu cherches.")}
+    <div class="q-label">Tu es sur quelle <strong style="color:var(--teal)">commune</strong> ?</div>
     <div style="position:relative;margin-top:4px">
       <select id="communeSelect" onchange="s1selectChange()" style="width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-family:'Inter',sans-serif;font-size:14.5px;color:var(--text);background:#fff;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .18s">
         <option value="">— Sélectionne ta commune —</option>
@@ -461,7 +306,7 @@ function s1(){
       </select>
       <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:12px">▼</span>
     </div>
-    <div style="font-size:12px;color:var(--muted);margin-top:8px">${c.zoneSub}</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:8px">Périmètre d’intervention : ~20 km autour de Château-Gontier</div>
     <button class="cta" id="s1next" onclick="s1submit()" style="margin-top:12px;opacity:0.4;pointer-events:none">Continuer →</button>
   `,1,15);
 }
@@ -476,27 +321,56 @@ function s1submit(){
   const val=(document.getElementById('communeSelect')?.value||'').trim();
   if(!val)return;
   state.commune=val;
-  if(state._fromFinal){state._fromFinal=false;s5b();}
-  else if(state._fromRecap){state._fromRecap=false;s5b();}
-  else{s2();}
+  if(state._fromFinal){state._fromFinal=false;s5b();}else if(state._fromRecap){state._fromRecap=false;s5b();}else{s2();}
 }
 
-/* ── ÉTAPE 2 — Type de piscine ── */
+function s1horszone(commune){
+  render(`
+    ${leonMsg(`Hmm, <strong>${commune}</strong> ne fait pas encore partie de notre zone de couverture. En V1, je couvre le Pays de Château-Gontier — environ 20 km autour de Château-Gontier.`)}
+    <div class="hz-wrap">
+      <div class="hz-icon">📍</div>
+      <div class="hz-text">Laisse-moi ton email et je te préviens quand on arrive dans ta zone !</div>
+      <div class="email-row">
+        <input type="email" id="hzMail" placeholder="ton@email.fr">
+        <button class="email-btn" onclick="hzSend()">M'avertir</button>
+      </div>
+    </div>
+    <button class="back-btn" onclick="s1()" style="margin-top:16px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Changer de commune</button>
+  `,1,15);
+}
+
+function hzSend(){
+  const mail=(document.getElementById('hzMail')?.value||'').trim();
+  render(`${leonMsg(mail?"Noté ! Je te préviendrai dès qu'on couvre ta zone. À bientôt 👋":"Pas de souci, reviens quand tu veux. On s'agrandit vite ! 👋")}
+  <button class="cta secondary" onclick="s0()" style="margin-top:16px">← Accueil</button>`,0,8);
+}
+
+/* ───── ÉTAPE 2 — Type de piscine ───── */
 function s2(){
-  const etape=CONFIG.etapes[0];
   state.step=2;
   state._typeChoice=null;
-  const msg = `<strong>${state.commune}</strong> — parfait, je connais bien le coin.`;
-  const choixHtml=etape.choix.map((ch,i)=>`
-    <div class="choice" id="t${i}" onclick="s2select(${i},'${ch.label}')">
-      <span class="choice-ico">${ch.ico}</span>
-      <div class="choice-txt"><strong>${ch.titre}</strong><span>${ch.sub||''}</span></div>
-    </div>`).join('');
   render(`
     ${backBtn('s1')}
-    ${personaMsg(msg)}
-    <div class="q-label">${etape.questionLabel}</div>
-    <div class="choices ${etape.layout==='grid2'?'grid2':''}" id="typeChoices">${choixHtml}</div>
+    ${leonMsg(`<strong>${state.commune}</strong> — parfait, je connais bien le coin.`)}
+    <div class="q-label">Quel <strong style="color:var(--teal)">type</strong> de piscine t’intéresse ?</div>
+    <div class="choices grid2" id="typeChoices">
+      <div class="choice" id="t0" onclick="s2select(0,'Piscine coque (polyester)')">
+        <span class="choice-ico">🏗️</span>
+        <div class="choice-txt"><strong>Coque polyester</strong><span>Rapide, économique</span></div>
+      </div>
+      <div class="choice" id="t1" onclick="s2select(1,'Piscine béton / maçonnée')">
+        <span class="choice-ico">🧱</span>
+        <div class="choice-txt"><strong>Béton / maçonnée</strong><span>Sur-mesure, durable</span></div>
+      </div>
+      <div class="choice" id="t2" onclick="s2select(2,'Piscine lagon / naturelle')">
+        <span class="choice-ico">🌊</span>
+        <div class="choice-txt"><strong>Lagon / naturelle</strong><span>Écologique, paysagère</span></div>
+      </div>
+      <div class="choice" id="t3" onclick="s2select(3,'Pas encore décidé')">
+        <span class="choice-ico">💭</span>
+        <div class="choice-txt"><strong>Pas encore décidé</strong><span>Je découvre</span></div>
+      </div>
+    </div>
     <button class="cta" id="typeNext" onclick="s2submit()" style="margin-top:12px;opacity:0.4;pointer-events:none">Continuer →</button>
   `,2,28);
 }
@@ -516,23 +390,36 @@ function s2submit(){
   else{s3();}
 }
 
-/* ── ÉTAPE 3 — Accessibilité ── */
+
+
+/* ───── ÉTAPE 3 — Accessibilité ───── */
 function s3(){
-  const etape=CONFIG.etapes[1];
   state.step=3;
   state._accesChoice=null;
-  const choixHtml=etape.choix.map((ch,i)=>`
-    <div class="choice" id="ac${i}" onclick="s3toggle(${i},'${ch.label}')">
-      <span class="choice-ico">${ch.ico}</span>
-      <div class="choice-txt"><strong>${ch.titre}</strong>${ch.sub?`<span>${ch.sub}</span>`:''}</div>
-    </div>`).join('');
   render(`
     ${backBtn('s2')}
-    ${personaMsg(etape.messageIntro)}
-    <div class="q-label">${etape.questionLabel}</div>
-    <div class="choices" id="accesChoices">${choixHtml}</div>
+    ${leonMsg("Pour prévoir l’acheminement des engins, matériaux et évacuation de la terre, j’ai besoin de connaître l’accessibilité de ton terrain.")}
+    <div class="q-label">Comment est l’<strong style="color:var(--teal)">accès</strong> à ton jardin ?</div>
+    <div class="choices" id="accesChoices">
+      <div class="choice" id="ac0" onclick="s3toggle(0,'Accès facile')">
+        <span class="choice-ico">✅</span>
+        <div class="choice-txt"><strong>Accès facile</strong><span>Portail large, accès direct depuis la rue, passage possible pour mini-pelle ou camion</span></div>
+      </div>
+      <div class="choice" id="ac1" onclick="s3toggle(1,'Accès limité')">
+        <span class="choice-ico">⚠️</span>
+        <div class="choice-txt"><strong>Accès limité</strong><span>Portail étroit, passage &lt; 1,5 m, distance importante depuis la rue…</span></div>
+      </div>
+      <div class="choice" id="ac2" onclick="s3toggle(2,'Accès très difficile')">
+        <span class="choice-ico">🚧</span>
+        <div class="choice-txt"><strong>Accès très difficile</strong><span>Pas d’accès véhicule, passage uniquement à pied, maison encalvée, passage par chez un voisin…</span></div>
+      </div>
+      <div class="choice" id="ac3" onclick="s3toggle(3,'Je ne sais pas')">
+        <span class="choice-ico">🤷</span>
+        <div class="choice-txt"><strong>Je ne sais pas</strong></div>
+      </div>
+    </div>
     <div style="margin-top:10px">
-      <textarea id="acPrecision" rows="3" placeholder="${etape.placeholderPrecision||''}" style="width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--text);background:#fff;outline:none;resize:none;line-height:1.5;transition:border-color .18s"></textarea>
+      <textarea id="acPrecision" rows="3" placeholder="Précisez si besoin : largeur du passage, distance, obstacles… (optionnel)" style="width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--text);background:#fff;outline:none;resize:none;line-height:1.5;transition:border-color .18s"></textarea>
     </div>
     <button class="cta" id="acNext" onclick="s3submit()" style="margin-top:10px;opacity:0.4;pointer-events:none">Continuer →</button>
   `,3,43);
@@ -540,7 +427,7 @@ function s3(){
 
 function s3toggle(idx,label){
   state._accesChoice=label;
-  document.querySelectorAll('#accesChoices .choice').forEach((c,i)=>c.classList.toggle('sel',i===idx));
+  document.querySelectorAll('#accesChoices .choice').forEach((c,i)=>{c.classList.toggle('sel',i===idx);});
   const btn=document.getElementById('acNext');
   if(btn){btn.style.opacity='1';btn.style.pointerEvents='auto';}
 }
@@ -549,27 +436,38 @@ function s3submit(){
   if(!state._accesChoice)return;
   const precision=(document.getElementById('acPrecision')?.value||'').trim();
   state.accessibilite=precision?state._accesChoice+' — '+precision:state._accesChoice;
-  if(state._fromFinal){state._fromFinal=false;s5b();}
-  else if(state._fromRecap){state._fromRecap=false;s5b();}
-  else{s3b();}
+  if(state._fromFinal){state._fromFinal=false;s5b();}else if(state._fromRecap){state._fromRecap=false;s5b();}else{s3b();}
 }
-
-/* ── ÉTAPE 3b — Terrain (multi-choix) ── */
 function s3b(){
-  const etape=CONFIG.etapes[2];
   state.step=3;
   state._terrainChoices=new Set();
-  const choixHtml=etape.choix.map((ch,i)=>`
-    <div class="choice" id="tc${i}" onclick="s3bToggle(${i},'${ch.label}')">
-      <span class="choice-ico">${ch.ico}</span>
-      <div class="choice-txt"><strong>${ch.titre}</strong>${ch.sub?`<span>${ch.sub}</span>`:''}</div>
-    </div>`).join('');
   render(`
     ${backBtn('s3')}
-    ${personaMsg(etape.messageIntro)}
-    <div class="q-label">${etape.questionLabel}</div>
+    ${leonMsg("Une dernière chose sur ton terrain avant de passer au budget.")}
+    <div class="q-label">Comment est ton <strong style="color:var(--teal)">terrain</strong> ?</div>
     <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Plusieurs réponses possibles</div>
-    <div class="choices" id="terrainChoices">${choixHtml}</div>
+    <div class="choices" id="terrainChoices">
+      <div class="choice" id="tc0" onclick="s3bToggle(0,'Terrain plat et stable')">
+        <span class="choice-ico">✅</span>
+        <div class="choice-txt"><strong>Terrain plat et stable</strong></div>
+      </div>
+      <div class="choice" id="tc1" onclick="s3bToggle(1,'Terrain en pente')">
+        <span class="choice-ico">⛰️</span>
+        <div class="choice-txt"><strong>Terrain en pente</strong></div>
+      </div>
+      <div class="choice" id="tc2" onclick="s3bToggle(2,'Terrain difficile')">
+        <span class="choice-ico">🪸</span>
+        <div class="choice-txt"><strong>Terrain difficile / contraint</strong><span>Sol rocheux, argile…</span></div>
+      </div>
+      <div class="choice" id="tc3" onclick="s3bToggle(3,'Presence obstacles')">
+        <span class="choice-ico">🌳</span>
+        <div class="choice-txt"><strong>Présence d’obstacles</strong><span>Arbres, murets, réseaux enterrés, constructions proches</span></div>
+      </div>
+      <div class="choice" id="tc4" onclick="s3bToggle(4,'Je ne sais pas')">
+        <span class="choice-ico">🤷</span>
+        <div class="choice-txt"><strong>Je ne sais pas</strong></div>
+      </div>
+    </div>
     <button class="cta" onclick="s3bSubmit()" style="margin-top:12px">Continuer →</button>
   `,3,50);
 }
@@ -577,14 +475,13 @@ function s3b(){
 function s3bToggle(idx,label){
   const el=document.getElementById('tc'+idx);
   if(!el)return;
-  const lastIdx=CONFIG.etapes[2].choix.length-1;
-  if(idx===lastIdx){
+  if(idx===4){
     state._terrainChoices.clear();
     state._terrainChoices.add(label);
-    document.querySelectorAll('#terrainChoices .choice').forEach((c,i)=>c.classList.toggle('sel',i===lastIdx));
+    document.querySelectorAll('#terrainChoices .choice').forEach((c,i)=>c.classList.toggle('sel',i===4));
   } else {
-    state._terrainChoices.delete(CONFIG.etapes[2].choix[lastIdx].label);
-    document.getElementById('tc'+lastIdx)?.classList.remove('sel');
+    state._terrainChoices.delete('Je ne sais pas');
+    document.getElementById('tc4')?.classList.remove('sel');
     if(state._terrainChoices.has(label)){state._terrainChoices.delete(label);el.classList.remove('sel');}
     else{state._terrainChoices.add(label);el.classList.add('sel');}
   }
@@ -592,26 +489,37 @@ function s3bToggle(idx,label){
 
 function s3bSubmit(){
   state.terrainContraintes=state._terrainChoices.size===0?'Non précisé':Array.from(state._terrainChoices).join(', ');
-  if(state._fromFinal){state._fromFinal=false;s5b();}
-  else if(state._fromRecap){state._fromRecap=false;s5b();}
-  else{s4();}
+  if(state._fromFinal){state._fromFinal=false;s5b();}else if(state._fromRecap){state._fromRecap=false;s5b();}else{s4();}
 }
-
-/* ── ÉTAPE 4 — Budget ── */
 function s4(){
-  const etape=CONFIG.etapes[3];
   state.step=4;
   state._budgetChoice=null;
-  const choixHtml=etape.choix.map((ch,i)=>`
-    <div class="choice" id="b${i}" onclick="s4select(${i},'${ch.label}')">
-      <span class="choice-ico">${ch.ico}</span>
-      <div class="choice-txt"><strong>${ch.titre}</strong>${ch.sub?`<span>${ch.sub}</span>`:''}</div>
-    </div>`).join('');
   render(`
     ${backBtn('s3b')}
-    ${personaMsg(etape.messageIntro)}
-    <div class="q-label">${etape.questionLabel}</div>
-    <div class="choices" id="budgetChoices">${choixHtml}</div>
+    ${leonMsg("Pour t’orienter vers les bons prestataires, j’ai besoin de savoir dans quelle fourchette tu te situes.")}
+    <div class="q-label">Tu as un <strong style="color:var(--teal)">budget</strong> en tête ?</div>
+    <div class="choices" id="budgetChoices">
+      <div class="choice" id="b0" onclick="s4select(0,'Moins de 15 000 €')">
+        <span class="choice-ico">💶</span>
+        <div class="choice-txt"><strong>Moins de 15 000 €</strong><span>Piscines hors-sol ou petites coques</span></div>
+      </div>
+      <div class="choice" id="b1" onclick="s4select(1,'Entre 15 000 € et 30 000 €')">
+        <span class="choice-ico">💶</span>
+        <div class="choice-txt"><strong>Entre 15 000 € et 30 000 €</strong><span>Coque polyester standard</span></div>
+      </div>
+      <div class="choice" id="b2" onclick="s4select(2,'Entre 30 000 € et 60 000 €')">
+        <span class="choice-ico">💶</span>
+        <div class="choice-txt"><strong>Entre 30 000 € et 60 000 €</strong><span>Béton ou coque haut de gamme</span></div>
+      </div>
+      <div class="choice" id="b3" onclick="s4select(3,'Plus de 60 000 €')">
+        <span class="choice-ico">💎</span>
+        <div class="choice-txt"><strong>Plus de 60 000 €</strong><span>Sur-mesure, lagon, spa</span></div>
+      </div>
+      <div class="choice" id="b4" onclick="s4select(4,'Budget non défini')">
+        <span class="choice-ico">💭</span>
+        <div class="choice-txt"><strong>Pas encore défini</strong></div>
+      </div>
+    </div>
     <button class="cta" id="budgetNext" onclick="s4submit()" style="margin-top:12px;opacity:0.4;pointer-events:none">Continuer →</button>
   `,4,57);
 }
@@ -626,26 +534,37 @@ function s4select(idx,label){
 function s4submit(){
   if(!state._budgetChoice)return;
   state.budget=state._budgetChoice;
-  if(state._fromFinal){state._fromFinal=false;s5b();}
-  else if(state._fromRecap){state._fromRecap=false;s5b();}
-  else{s5();}
+  if(state._fromFinal){state._fromFinal=false;s5b();}else if(state._fromRecap){state._fromRecap=false;s5b();}else{s5();}
 }
-
-/* ── ÉTAPE 5 — Délai ── */
 function s5(){
-  const etape=CONFIG.etapes[4];
   state.step=5;
   state._delaiOther=false;
-  const choixHtml=etape.choix.map((ch,i)=>`
-    <div class="choice" id="d${i}" onclick="s5pick(${i},'${ch.label}')">
-      <span class="choice-ico">${ch.ico}</span>
-      <div class="choice-txt"><strong>${ch.titre}</strong>${ch.sub?`<span>${ch.sub}</span>`:''}</div>
-    </div>`).join('');
   render(`
     ${backBtn('s4')}
-    ${personaMsg(etape.messageIntro)}
-    <div class="q-label">${etape.questionLabel}</div>
-    <div class="choices" id="delaiChoices">${choixHtml}</div>
+    ${leonMsg("Dernière question pour ton brief !")}
+    <div class="q-label"><strong style="color:var(--teal)">Quand</strong> souhaites-tu démarrer ?</div>
+    <div class="choices" id="delaiChoices">
+      <div class="choice" id="d0" onclick="s5pick(0,'Dès que possible')">
+        <span class="choice-ico">⚡</span>
+        <div class="choice-txt"><strong>Dès que possible</strong><span>Je suis prêt à commencer l’exécution du projet</span></div>
+      </div>
+      <div class="choice" id="d1" onclick="s5pick(1,'D’ici 6 mois')">
+        <span class="choice-ico">📅</span>
+        <div class="choice-txt"><strong>D’ici 6 mois</strong><span>Je définis la planification et le budget du projet</span></div>
+      </div>
+      <div class="choice" id="d2" onclick="s5pick(2,'D’ici 1 an ou plus')">
+        <span class="choice-ico">🗓️</span>
+        <div class="choice-txt"><strong>D’ici 1 an ou plus</strong><span>Je compare encore, pas de délai défini</span></div>
+      </div>
+      <div class="choice" id="d3" onclick="s5pick(3,'Déjà commencé')">
+        <span class="choice-ico">🔨</span>
+        <div class="choice-txt"><strong>Déjà commencé</strong><span>J’ai besoin de ressources supplémentaires pour un projet en cours</span></div>
+      </div>
+      <div class="choice" id="d4" onclick="s5pick(4,'Autre')">
+        <span class="choice-ico">💬</span>
+        <div class="choice-txt"><strong>Autre</strong><span>Préciser</span></div>
+      </div>
+    </div>
     <div id="delaiOtherWrap" style="display:none;margin-top:10px">
       <textarea id="delaiOtherText" rows="2" placeholder="Précise ton délai…" style="width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--text);background:#fff;outline:none;resize:none;line-height:1.5;transition:border-color .18s"></textarea>
     </div>
@@ -656,10 +575,9 @@ function s5(){
 function s5pick(idx,label){
   document.querySelectorAll('#delaiChoices .choice').forEach((c,i)=>c.classList.toggle('sel',i===idx));
   state._delaiLabel=label;
-  const lastIdx=CONFIG.etapes[4].choix.length-1;
-  state._delaiOther=(idx===lastIdx);
+  state._delaiOther=(idx===4);
   const wrap=document.getElementById('delaiOtherWrap');
-  if(wrap) wrap.style.display=(idx===lastIdx)?'block':'none';
+  if(wrap) wrap.style.display=(idx===4)?'block':'none';
   const btn=document.getElementById('delaiNext');
   if(btn){btn.style.opacity='1';btn.style.pointerEvents='auto';}
 }
@@ -672,19 +590,11 @@ function s5submit(){
   } else {
     state.delai=state._delaiLabel;
   }
-  s5b();
+  if(state._fromFinal){state._fromFinal=false;s5b();}else if(state._fromRecap){state._fromRecap=false;s5b();}else{s5b();}
 }
 
-/* ── RÉCAP INTERMÉDIAIRE ── */
 function s5b(){
   state.step=6;
-  const r=CONFIG.recap;
-  const champsHtml=r.champs.map(ch=>`
-    <div class="brief-row" style="align-items:center">
-      <span class="bk">${ch.ico} ${ch.label}</span>
-      <span class="bv" style="flex:1">${state[ch.stateKey]||(ch.defaut||'—')}</span>
-      <button onclick="state._fromFinal=true;${ch.etape}()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
-    </div>`).join('');
   render(`
     <div style="text-align:center;margin-bottom:4px">
       <div style="font-size:22px;margin-bottom:6px">📋</div>
@@ -709,20 +619,40 @@ function s5b(){
       </div>
     </div>
     <div class="brief-card">
-      <div class="brief-title">${r.titre}</div>
-      ${champsHtml}
+      <div class="brief-title">📋 Récap projet piscine</div>
+      <div class="brief-row" style="align-items:center">
+        <span class="bk">📍 Commune</span><span class="bv" style="flex:1">${state.commune}</span>
+        <button onclick="state._fromFinal=true;s1()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
+      </div>
+      <div class="brief-row" style="align-items:center">
+        <span class="bk">🏊 Type</span><span class="bv" style="flex:1">${state.typePiscine}</span>
+        <button onclick="state._fromFinal=true;s2()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
+      </div>
+      <div class="brief-row" style="align-items:center">
+        <span class="bk">🚧 Accès</span><span class="bv" style="flex:1">${state.accessibilite}</span>
+        <button onclick="state._fromFinal=true;s3()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
+      </div>
+      <div class="brief-row" style="align-items:center">
+        <span class="bk">🌍 Terrain</span><span class="bv" style="flex:1">${state.terrainContraintes||'Non précisé'}</span>
+        <button onclick="state._fromFinal=true;s3b()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
+      </div>
+      <div class="brief-row" style="align-items:center">
+        <span class="bk">💶 Budget</span><span class="bv" style="flex:1">${state.budget}</span>
+        <button onclick="state._fromFinal=true;s4()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
+      </div>
+      <div class="brief-row" style="align-items:center">
+        <span class="bk">📅 Délai</span><span class="bv" style="flex:1">${state.delai}</span>
+        <button onclick="state._fromFinal=true;s5()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
+      </div>
     </div>
     <button class="cta" onclick="state.prenom?s7():s6()" style="margin-top:8px">Continuer → Mes coordonnées</button>
   `,6,85);
 }
-
-/* ── ÉTAPE 6 — Coordonnées ── */
 function s6(){
   state.step=7;
-  const c=CONFIG.coordonnees;
   render(`
     ${backBtn('s5b')}
-    ${personaMsg(c.messageIntro)}
+    ${leonMsg("Parfait, j’ai tout ce qu’il me faut sur ton projet ! Pour que les piscinistes puissent te contacter, j’ai besoin de quelques infos.")}
     <div class="q-label">Tes <strong style="color:var(--teal)">coordonnées</strong></div>
     <div class="form-fields">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -737,7 +667,7 @@ function s6(){
       </div>
       <div style="display:flex;align-items:flex-start;gap:10px;background:var(--teal-light);border:1px solid rgba(29,107,95,.15);border-radius:var(--radius-sm);padding:11px 13px;margin-top:2px">
         <span style="font-size:18px;flex-shrink:0;margin-top:1px">🔒</span>
-        <div style="font-size:12px;color:var(--muted);line-height:1.5">Tes coordonnées restent confidentielles jusqu'à ce que des prestataires intéressés présentent une demande officielle pour ton projet.</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.5">Tes coordonnées restent confidentielles jusqu’à ce que des prestataires intéressés présentent une demande officielle pour ton projet.</div>
       </div>
     </div>
     <div id="formErr" style="font-size:12.5px;color:var(--accent);margin-top:6px;min-height:16px"></div>
@@ -758,28 +688,24 @@ function s6submit(){
   document.getElementById('fEmail')?.classList.toggle('err',!emailOk);
   document.getElementById('fTel')?.classList.toggle('err',!telOk);
   const errEl=document.getElementById('formErr');
-  if(errEl) errEl.textContent=!telOk?'Numéro invalide — format attendu : 06 ou 07 suivi de 8 chiffres':!emailOk?'Adresse email invalide':'';
+  if(errEl) errEl.textContent=!telOk?'Numéro invalide — format attendu : 06 ou 07 suivi de 8 chiffres':!emailOk?'Adresse email invalide':'';
   if(!p||!n||!emailOk||!telOk)return;
   state.prenom=p;state.nom=n;state.email=e;state.tel=raw;
   s7();
 }
 
-/* ── ÉTAPE 7 — Récap final + RGPD ── */
 function s7(){
   state.step=8;
-  const r=CONFIG.recap;
-  const champsHtml=r.champs.map(ch=>`
-    <div class="brief-row" style="align-items:center">
-      <span class="bk">${ch.label}</span>
-      <span class="bv" style="flex:1">${state[ch.stateKey]||(ch.defaut||'—')}</span>
-      <button onclick="state._fromFinal=true;${ch.etape}()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button>
-    </div>`).join('');
   render(`
-    ${personaMsg("Voilà le récapitulatif de ton projet. Vérifie et valide quand c'est bon.")}
+    ${leonMsg("Voilà le récapitulatif de ton projet. Vérifie et valide quand c’est bon.")}
     <div class="brief-card">
-      <div class="brief-title">${r.titre}</div>
+      <div class="brief-title">📋 Récap projet piscine</div>
       <div class="brief-row" style="align-items:center"><span class="bk">Commune</span><span class="bv" style="flex:1">${state.commune}</span><button onclick="state._fromFinal=true;s1()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button></div>
-      ${champsHtml}
+      <div class="brief-row" style="align-items:center"><span class="bk">Type</span><span class="bv" style="flex:1">${state.typePiscine}</span><button onclick="state._fromFinal=true;s2()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button></div>
+      <div class="brief-row" style="align-items:center"><span class="bk">Accès</span><span class="bv" style="flex:1">${state.accessibilite}</span><button onclick="state._fromFinal=true;s3()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button></div>
+      <div class="brief-row" style="align-items:center"><span class="bk">Terrain</span><span class="bv" style="flex:1">${state.terrainContraintes||'Non précisé'}</span><button onclick="state._fromFinal=true;s3b()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button></div>
+      <div class="brief-row" style="align-items:center"><span class="bk">Budget</span><span class="bv" style="flex:1">${state.budget}</span><button onclick="state._fromFinal=true;s4()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button></div>
+      <div class="brief-row" style="align-items:center"><span class="bk">Délai</span><span class="bv" style="flex:1">${state.delai}</span><button onclick="state._fromFinal=true;s5()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--teal);padding:0;flex-shrink:0">Modifier</button></div>
     </div>
     <div class="brief-card" style="margin-top:8px">
       <div class="brief-title">👤 Tes coordonnées</div>
@@ -830,11 +756,10 @@ function sConfirmCheck(){
   sConfirm();
 }
 
-/* ── CONFIRMATION + ENVOI WEBHOOK ── */
 function sConfirm(){
   const payload = {
-    verticale: CONFIG.verticale,
-    expertise: CONFIG.expertise,
+    verticale: "Maison et Jardin",
+    expertise: "Piscine",
     commune: state.commune || "",
     typePiscine: state.typePiscine || "",
     accessibilite: state.accessibilite || "",
@@ -847,16 +772,15 @@ function sConfirm(){
     tel: state.tel || "",
     dateDepot: new Date().toISOString()
   };
-  fetch(CONFIG.webhook, {
+  fetch("https://hook.eu1.make.com/npe4wnn7rhvvarsq6km3y938t7oe7l4u", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(payload)
   }).catch(()=>{});
-  const conf=CONFIG.confirmation;
   screen.innerHTML=`<div class="screen-in"><div class="confirm-wrap">
-    <div class="confirm-circle"><div class="confirm-ico">${conf.emoji}</div></div>
-    <div class="confirm-h">${conf.titre}</div>
-    <div class="confirm-p">${conf.texte}</div>
+    <div class="confirm-circle"><div class="confirm-ico">🏊</div></div>
+    <div class="confirm-h">Ton projet est entre de bonnes mains.</div>
+    <div class="confirm-p">Les piscinistes partenaires de ta zone vont recevoir ton brief d’ici quelques heures. Ceux qui se positionnent te contacteront directement.</div>
     <div class="chips">
       <span class="chip">📧 Récap envoyé par email</span>
       <span class="chip">⏰ Réponse dans la journée</span>
@@ -865,7 +789,7 @@ function sConfirm(){
     <div style="margin-top:16px;width:100%;border-top:1px solid rgba(74,138,128,.2);padding-top:14px">
       <div style="font-size:12.5px;color:var(--muted);margin-bottom:10px;text-align:center">Parle de nous à tes proches 👉</div>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-        <a href="https://wa.me/?text=${conf.whatsappTexte}" target="_blank" style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:#25D366;color:#fff;border-radius:20px;text-decoration:none;font-size:13px;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+        <a href="https://wa.me/?text=J%27ai%20trouv%C3%A9%20un%20outil%20sympa%20pour%20trouver%20des%20piscinistes%20dans%20le%20Pays%20de%20Ch%C3%A2teau-Gontier%20%3A%20localmagnet.fr" target="_blank" style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:#25D366;color:#fff;border-radius:20px;text-decoration:none;font-size:13px;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
         <button onclick="navigator.clipboard?.writeText('localmagnet.fr').then(()=>{this.textContent='✓ Lien copié !';setTimeout(()=>this.textContent='🔗 Copier le lien',2000)})" style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--teal-light);color:var(--teal-dark);border:1px solid rgba(29,107,95,.2);border-radius:20px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer">🔗 Copier le lien</button>
       </div>
     </div>
