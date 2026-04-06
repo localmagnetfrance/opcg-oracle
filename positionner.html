@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Se positionner — Local Magnet</title>
+<title>Se positionner — LocalMagnet</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap');
 
@@ -183,7 +183,7 @@
     margin-top: 20px;
   }
 
-  /* Erreur déjà positionné */
+  /* Déjà positionné */
   #state-already .icon-wrap {
     width: 64px;
     height: 64px;
@@ -213,11 +213,11 @@
     line-height: 1.6;
   }
 
-  /* Erreur token expiré */
+  /* Trop tard / attribué — utilisé pour 410 */
   #state-expired .icon-wrap {
     width: 64px;
     height: 64px;
-    background: var(--error-bg);
+    background: var(--orange-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -227,7 +227,7 @@
   #state-expired .icon-wrap svg {
     width: 28px;
     height: 28px;
-    stroke: var(--error);
+    stroke: var(--orange);
   }
   #state-expired h1 {
     font-family: 'Newsreader', serif;
@@ -301,7 +301,7 @@
 </head>
 <body>
 
-<div class="logo">Local Magnet</div>
+<div class="logo">LocalMagnet</div>
 
 <div class="card">
 
@@ -346,15 +346,15 @@
     <p>Vous vous êtes déjà positionné sur ce projet. Votre demande est bien prise en compte — pas besoin de cliquer à nouveau.<br><br>Résultat de la sélection à <strong>12h00</strong>.</p>
   </div>
 
-  <!-- TOKEN EXPIRÉ -->
+  <!-- TROP TARD / ATTRIBUÉ (410) -->
   <div id="state-expired" class="state">
     <div class="icon-wrap">
       <svg fill="none" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
       </svg>
     </div>
-    <h1>Fenêtre de positionnement fermée</h1>
-    <p>La fenêtre de positionnement pour ce projet s'est terminée à 12h00. Les prestataires sélectionnés ont déjà été notifiés.<br><br>Vous recevrez le prochain brief demain matin à <strong>6h45</strong>.</p>
+    <h1>Trop tard !</h1>
+    <p>Il n'est plus possible de se positionner sur ce projet. Il a déjà été attribué. Mais de nouveau leads vont arriver. Rdv chaque matin dès 6h45 dans votre boite email.</p>
   </div>
 
   <!-- ERREUR GÉNÉRIQUE -->
@@ -364,14 +364,13 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
       </svg>
     </div>
-    <h1>Une erreur est survenue</h1>
-    <p>Impossible d'enregistrer votre positionnement. Réessayez dans quelques instants ou contactez l'opérateur.</p>
-    <button class="btn-retry" onclick="retry()">Réessayer</button>
+    <h1>Trop tard !</h1>
+    <p>Il n'est plus possible de se positionner sur ce projet. Il a déjà été attribué. Mais de nouveau leads vont arriver. Rdv chaque matin dès 6h45 dans votre boite email.</p>
   </div>
 
 </div>
 
-<div class="footer">Local Magnet · Pays de Château-Gontier</div>
+<div class="footer">LocalMagnet · Fournisseur de leads locaux</div>
 
 <script>
   // =====================================================
@@ -381,10 +380,10 @@
   // =====================================================
 
   const params = new URLSearchParams(window.location.search);
-  const brief  = params.get('brief');   // UUID du brief
-  const email  = params.get('email');   // Email prestataire
-  const nom    = params.get('nom');     // Nom prestataire
-  const token  = params.get('token');   // Token anti-double-clic
+  const brief  = params.get('brief');
+  const email  = params.get('email');
+  const nom    = params.get('nom');
+  const token  = params.get('token');
 
   function showState(id) {
     document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
@@ -398,14 +397,11 @@
 
   function populateRecap() {
     document.getElementById('recap-nom').textContent = decodeURIComponent(nom || '');
-    // Le brief détail sera rempli par la réponse Make si besoin
-    // Pour l'instant on affiche juste le brief ID court
     const briefShort = brief ? brief.substring(0, 8).toUpperCase() : '';
     document.getElementById('recap-brief').textContent = 'Réf. projet : ' + briefShort;
   }
 
   async function sendPositionnement() {
-    // Vérification des paramètres obligatoires
     if (!brief || !email || !token) {
       showState('state-error');
       return;
@@ -426,13 +422,10 @@
       });
 
       if (!response.ok) {
-        // Make renvoie des codes HTTP spécifiques selon le cas
         const status = response.status;
         if (status === 409) {
-          // 409 Conflict = déjà positionné
           showState('state-already');
-        } else if (status === 999) {
-          // 410 Gone = token expiré (fenêtre 12h dépassée)
+        } else if (status === 410) {
           showState('state-expired');
         } else {
           showState('state-error');
@@ -440,7 +433,6 @@
         return;
       }
 
-      // Succès
       populateRecap();
       showState('state-confirm');
 
@@ -450,7 +442,6 @@
     }
   }
 
-  // Lancement automatique au chargement
   sendPositionnement();
 </script>
 </body>
