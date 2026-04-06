@@ -209,9 +209,18 @@ const COMMUNES = [
   "Loigné","Poillé-sur-Vègre","Saint-Quentin-lès-Angers",
 ];
 
+const ZONES = {
+  '5301sm': ["Château-Gontier","Craon","Cossé-le-Vivien","Meslay-du-Maine","Saint-Denis-d'Anjou","Azé","Ballots","Grez-en-Bouère","Senonnes"],
+  '5302la': ["Laval","Changé","Bonchamp-lès-Laval","Saint-Berthevin","Loiron-Ruillé"],
+  '5303nm': ["Mayenne","Ernée","Gorron","Ambrières-les-Vallées"]
+};
+
+const _zoneParam = new URLSearchParams(location.search).get('zone');
+const activeCommunes = (_zoneParam && ZONES[_zoneParam]) ? ZONES[_zoneParam] : COMMUNES;
+
 function normalize(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[-']/g,' ')}
-function inZone(v){const n=normalize(v);return COMMUNES.some(c=>{const m=normalize(c);return m===n||m.startsWith(n)||n.startsWith(m.split(' ')[0])})}
-function findCommune(v){const n=normalize(v);return COMMUNES.find(c=>{const m=normalize(c);return m===n||m.startsWith(n)||n.startsWith(m.split(' ')[0])})||v}
+function inZone(v){const n=normalize(v);return activeCommunes.some(c=>{const m=normalize(c);return m===n||m.startsWith(n)||n.startsWith(m.split(' ')[0])})}
+function findCommune(v){const n=normalize(v);return activeCommunes.find(c=>{const m=normalize(c);return m===n||m.startsWith(n)||n.startsWith(m.split(' ')[0])})||v}
 
 const state={step:0,commune:null,typePiscine:null,accessibilite:null,budget:null,delai:null,prenom:null,nom:null,email:null,tel:null,consent:false};
 
@@ -295,7 +304,7 @@ function s0pick(v){
 /* ───── ÉTAPE 1 — Commune ───── */
 function s1(){
   state.step=1;
-  const opts=COMMUNES.map(c=>`<option value="${c}">${c}</option>`).join('');
+  const opts=activeCommunes.map(c=>`<option value="${c}">${c}</option>`).join('');
   render(`
     ${leonMsg("Super ! Je vais te poser quelques questions rapides pour cerner ton projet et t’orienter vers les piscinistes qui correspondent le mieux à ce que tu cherches.")}
     <div class="q-label">Tu es sur quelle <strong style="color:var(--teal)">commune</strong> ?</div>
