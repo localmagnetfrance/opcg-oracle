@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>localmagnet — Les bons pros du coin</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -15,22 +15,22 @@
   --rose:#8b4d6e;--rose-dark:#6b3352;--rose-light:#fdf0f5;
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+body{font-family:'Lora',serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(244,241,236,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--text);display:flex;align-items:center;gap:7px;}
+.nav-logo{font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:var(--text);display:flex;align-items:center;gap:7px;}
 .nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
-.nav-cta{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;background:var(--text);padding:9px 20px;border-radius:24px;text-decoration:none;transition:background .2s;}
+.nav-cta{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;background:var(--text);padding:9px 20px;border-radius:24px;text-decoration:none;transition:background .2s;}
 .nav-cta:hover{background:var(--accent);}
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 24px 72px;text-align:center;}
 .hero-inner{max-width:720px;width:100%;}
 
-.hero-question{font-size:clamp(20px,3vw,28px);font-weight:600;color:var(--text);margin-bottom:16px;letter-spacing:-.3px;}
+.hero-question{font-family:'Montserrat',sans-serif;font-size:clamp(18px,2.5vw,24px);font-weight:600;color:var(--text);margin-bottom:16px;letter-spacing:.02em;}
 
-.hero-title{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:20px;}
+.hero-title{font-family:'Montserrat',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:20px;}
 .hero-title .acc{color:var(--accent);}
 
 /* Zones géo */
@@ -42,15 +42,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;ali
 
 /* CTA hero */
 .hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
-.btn-hero{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;background:var(--text);padding:17px 40px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .25s;box-shadow:0 6px 20px rgba(26,42,40,.18);}
+.btn-hero{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#fff;background:var(--text);padding:17px 40px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .25s;box-shadow:0 6px 20px rgba(26,42,40,.18);}
 .btn-hero:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,107,69,.28);}
 .hero-reassure{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;}
 .hero-reassure::before{content:'✓';color:var(--accent);font-weight:700;}
 
 /* ── EXPERTS ── */
 .experts{padding:88px 40px;max-width:1200px;margin:0 auto;}
-.section-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:10px;}
-.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1.1;margin-bottom:40px;}
+.section-eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;}
+.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1.1;margin-bottom:40px;}
 
 .experts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .expert-card{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:all .3s cubic-bezier(.34,1.56,.64,1);cursor:pointer;}
@@ -64,7 +64,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;ali
 
 .ec-header-text{flex:1;padding-bottom:20px;}
 /* Verticale en gros */
-.ec-vertical{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:6px;}
+.ec-vertical{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:6px;}
 /* Expert en petit sous */
 .ec-expert{font-size:11px;font-weight:400;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:5px;}
 .ec-expert-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4);}
@@ -80,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;ali
 .expert-card:hover .ec-tag-thomas{background:var(--slate-light);border-color:#4a6278;color:var(--slate);}
 .expert-card:hover .ec-tag-camille{background:var(--rose-light);border-color:#b07090;color:var(--rose);}
 
-.ec-cta{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-radius:12px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;text-decoration:none;color:#fff;transition:all .2s;}
+.ec-cta{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;text-decoration:none;color:#fff;transition:all .2s;}
 .ec-cta-leon{background:var(--teal);}.ec-cta-leon:hover{background:var(--teal-dark);}
 .ec-cta-thomas{background:var(--slate);}.ec-cta-thomas:hover{background:var(--slate-dark);}
 .ec-cta-camille{background:var(--rose);}.ec-cta-camille:hover{background:var(--rose-dark);}
@@ -91,14 +91,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;ali
 .how{background:var(--text);padding:88px 40px;position:relative;overflow:hidden;}
 .how::before{content:'';position:absolute;top:-48px;left:0;right:0;height:48px;background:var(--bg);border-radius:0 0 28px 28px;}
 .how-inner{max-width:1200px;margin:0 auto;}
-.how-title{font-family:'Syne',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:6px;}
+.how-title{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:6px;}
 .how-sub{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:48px;font-weight:300;}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:rgba(255,255,255,.06);border-radius:18px;overflow:hidden;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:rgba(255,255,255,.06);border-radius:18px;overflow:hidden;}
 .step{padding:28px 24px;background:rgba(255,255,255,.03);transition:background .2s;}
 .step:hover{background:rgba(255,255,255,.07);}
 .step-icon{font-size:20px;margin-bottom:16px;}
-.step-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:rgba(255,255,255,.08);line-height:1;margin-bottom:12px;}
-.step-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;}
+.step-num{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:800;color:rgba(255,255,255,.08);line-height:1;margin-bottom:12px;}
+.step-title{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;}
 .step-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;font-weight:300;}
 
 /* ── ZONE ── */
@@ -116,7 +116,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;ali
 .zone-next-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
 .zone-chips{display:flex;gap:6px;flex-wrap:wrap;}
 .zone-chip{font-size:11px;padding:3px 9px;border-radius:10px;background:var(--border);color:var(--muted);}
-.btn-accent{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;background:var(--accent);padding:14px 28px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+.btn-accent{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#fff;background:var(--accent);padding:14px 28px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
 .btn-accent:hover{background:#b05a35;transform:translateY(-1px);}
 
 /* ── PROMESSE ── */
@@ -125,14 +125,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;ali
 .promesse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:var(--border);border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-top:48px;}
 .promesse-item{background:var(--card);padding:36px 32px;transition:background .2s;}
 .promesse-item:hover{background:#faf8f4;}
-.promesse-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;color:var(--accent);margin-bottom:10px;}
-.promesse-label{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.promesse-num{font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;color:var(--accent);margin-bottom:10px;}
+.promesse-label{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;}
 .promesse-desc{font-size:13px;color:var(--muted);line-height:1.65;}
 .promesse-desc strong{font-weight:600;color:var(--text);}
 
 /* ── FOOTER ── */
 footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--text);display:flex;align-items:center;gap:6px;}
+.footer-logo{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--text);display:flex;align-items:center;gap:6px;}
 .footer-logo-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
 .footer-links{display:flex;gap:24px;}
 .footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
@@ -158,7 +158,19 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><div class="nav-logo-dot"></div>localmagnet</div>
+  <div style="display:inline-flex;align-items:center;gap:10px;">
+    <!-- PIN SVG inline -->
+    <svg width="22" height="32" viewBox="0 0 22 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="11" r="9.5" stroke="#c96b45" stroke-width="3"/>
+      <circle cx="11" cy="11" r="4" fill="#c96b45"/>
+      <path d="M11 20 L5 32 L11 27 L17 32 Z" fill="#c96b45"/>
+    </svg>
+    <!-- TEXT STACK inline -->
+    <div style="display:flex;flex-direction:column;line-height:1.05;gap:0;">
+      <span style="font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;letter-spacing:-0.03em;color:#1a2a28;">local</span>
+      <span style="font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;letter-spacing:-0.03em;color:#c96b45;">magnet</span>
+    </div>
+  </div>
   <a href="#experts" class="nav-cta">Décrire mon projet →</a>
 </nav>
 
@@ -166,7 +178,7 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
 <section class="hero">
   <div class="hero-inner">
     <p class="hero-question">Vous avez un projet en Mayenne ?</p>
-    <h1 class="hero-title">Les bons pros du coin.<br><span class="acc">Pas tous les pros.</span></h1>
+    <h1 class="hero-title">Les pros du coin sont là.<br><span class="acc">Juste les bons.</span></h1>
 
     <div class="hero-zones">
       <div class="zone-pill-active">
@@ -180,6 +192,7 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
     <div class="hero-cta-wrap">
       <a href="#experts" class="btn-hero">Décrire mon projet <span>→</span></a>
       <p class="hero-reassure">Gratuit · Sans inscription · Max 4 artisans</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px;font-family:'Lora',serif;font-style:italic;">Nous allons vous mettre en relation avec le bon expert.</p>
     </div>
   </div>
 </section>
@@ -187,7 +200,7 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
 <!-- EXPERTS -->
 <section class="experts" id="experts">
   <div class="section-eyebrow">Vos experts locaux</div>
-  <h2 class="section-title">À qui voulez-vous parler ?</h2>
+  <h2 class="section-title">Quel expert pour votre projet ?</h2>
 
   <div class="experts-grid">
 
@@ -265,13 +278,13 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
 <section class="how">
   <div class="how-inner">
     <h2 class="how-title">Comment ça marche</h2>
-    <p class="how-sub">Un parcours simple, en 4 étapes — sans inscription.</p>
+    <p class="how-sub">Un parcours simple, en 3 étapes — sans inscription.</p>
     <div class="steps">
       <div class="step">
         <div class="step-icon">🎯</div>
         <div class="step-num">01</div>
         <div class="step-title">Choisissez votre expert</div>
-        <div class="step-desc">Léon, Thomas ou Camille selon votre projet. Chacun connaît son domaine et ses artisans locaux.</div>
+        <div class="step-desc">Léon, Thomas ou Camille selon votre projet. Chacun connaît son domaine et les professionnels locaux.</div>
       </div>
       <div class="step">
         <div class="step-icon">💬</div>
@@ -280,17 +293,12 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
         <div class="step-desc">Un parcours guidé de 5 à 8 questions. Votre projet est cadré avant le premier contact.</div>
       </div>
       <div class="step">
-        <div class="step-icon">📋</div>
-        <div class="step-num">03</div>
-        <div class="step-title">Le brief part aux artisans</div>
-        <div class="step-desc">Les artisans locaux reçoivent votre brief qualifié dès le lendemain matin à 6h45.</div>
-      </div>
-      <div class="step">
         <div class="step-icon">📞</div>
-        <div class="step-num">04</div>
-        <div class="step-title">Maximum 4 vous rappellent</div>
-        <div class="step-desc">Pas plus de 4 artisans sélectionnés reçoivent vos coordonnées. Ils vous contactent directement.</div>
+        <div class="step-num">03</div>
+        <div class="step-title">Votre projet est envoyé aux pros du coin</div>
+        <div class="step-desc">4 pros sélectionnés reçoivent vos coordonnées. Ils vous recontactent (ou vous les recontactez).</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -299,9 +307,9 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
 <section class="zone-section">
   <div class="zone-wrap">
     <div>
-      <div class="section-eyebrow">Zone de service</div>
+      <div class="section-eyebrow">Zone d'intervention</div>
       <h2 class="section-title" style="margin-bottom:16px;">Ancré dans le<br>Sud Mayenne.</h2>
-      <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;max-width:400px;">localmagnet opère uniquement sur son territoire. Chaque artisan référencé intervient réellement dans votre commune.</p>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;max-width:400px;font-family:'Lora',serif;">Chaque professionnel référencé passe par une grille d'évaluation rigoureuse.</p>
       <a href="#experts" class="btn-accent">Trouver mon expert →</a>
     </div>
     <div class="zone-card">
@@ -336,22 +344,22 @@ footer{padding:36px 40px;border-top:1px solid var(--border);max-width:1200px;mar
 <section class="promesse">
   <div class="promesse-inner">
     <div class="section-eyebrow">La promesse localmagnet</div>
-    <h2 class="section-title" style="margin-bottom:0;">Ce qui nous rend différents</h2>
+    <h2 class="section-title" style="margin-bottom:0;">Pourquoi nous faire confiance</h2>
     <div class="promesse-grid">
-      <div class="promesse-item">
-        <div class="promesse-num">4</div>
-        <div class="promesse-label">prestataires maximum</div>
-        <div class="promesse-desc">Votre brief n'est jamais partagé à plus de 4 artisans. <strong>Vous êtes contacté par des pros qui ont vraiment envie de votre projet.</strong></div>
-      </div>
       <div class="promesse-item">
         <div class="promesse-num">100%</div>
         <div class="promesse-label">prestataires sélectionnés</div>
-        <div class="promesse-desc">Tout le monde ne peut pas être référencé sur localmagnet. <strong>Chaque artisan a été validé sur candidature pour sa zone.</strong></div>
+        <div class="promesse-desc">Tout le monde ne peut pas être référencé sur localmagnet. <strong>Chaque professionnel a été validé sur candidature.</strong></div>
+      </div>
+      <div class="promesse-item">
+        <div class="promesse-num">4</div>
+        <div class="promesse-label">prestataires maximum</div>
+        <div class="promesse-desc">Votre projet est partagé à notre sélection de professionnels. Jamais plus de 4. <strong>Vous ne serez pas harcelés. Juste contacté par les pros disponibles et intéressés par votre projet.</strong></div>
       </div>
       <div class="promesse-item">
         <div class="promesse-num">0€</div>
-        <div class="promesse-label">pour les habitants</div>
-        <div class="promesse-desc">L'accès est totalement gratuit pour les habitants. <strong>Aucune inscription, aucune commission cachée, aucun démarchage.</strong></div>
+        <div class="promesse-label">pour les particuliers</div>
+        <div class="promesse-desc">L'accès est totalement gratuit pour les particuliers. <strong>Aucune inscription, aucune commission cachée. Pas de frais cachés.</strong></div>
       </div>
     </div>
   </div>
