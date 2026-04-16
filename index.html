@@ -7,23 +7,23 @@
   <meta name="description" content="Trouvez les bons professionnels en Sud-Mayenne. Sans perdre de temps. Sans vous tromper. Gratuit, sans inscription, en 2 minutes." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ── TOKENS ── */
     :root {
-      --font-title: 'Montserrat', sans-serif;
-      --font-body:  'Lora', serif;
-      --bg:         #F4F1EC;
-      --card:       #FFFFFF;
-      --text:       #1A2A28;
-      --muted:      #637070;
-      --border:     #E2DDD6;
-      --accent:     #C96B45;
-      --radius:     14px;
-      --radius-sm:  9px;
+      --font-title:  'Montserrat', sans-serif;
+      --font-body:   'Lora', serif;
+      --bg:          #F4F1EC;
+      --card:        #FFFFFF;
+      --text:        #1A2A28;
+      --muted:       #637070;
+      --border:      #E2DDD6;
+      --accent:      #C96B45;
+      --radius:      14px;
+      --radius-sm:   10px;
     }
 
     /* ── BASE ── */
@@ -43,7 +43,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 24px;
+      padding: 14px 32px;
       background: var(--card);
       border-bottom: 1px solid var(--border);
       position: sticky;
@@ -53,14 +53,13 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
-    .nav-logo svg { flex-shrink: 0; }
     .nav-wordmark {
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 17px;
-      letter-spacing: -0.5px;
+      font-size: 16px;
+      letter-spacing: -0.4px;
       color: var(--text);
     }
     .nav-wordmark span { color: var(--accent); }
@@ -83,8 +82,8 @@
       user-select: none;
     }
     .zone-pill-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #1D6B5F;
       flex-shrink: 0;
@@ -92,83 +91,57 @@
 
     /* ── HERO ── */
     .hero {
-      padding: 56px 24px 40px;
+      padding: 56px 32px 44px;
       text-align: center;
     }
-    .hero-line1 {
+    .hero-h1 {
       font-family: var(--font-title);
       font-weight: 800;
-      font-size: clamp(24px, 5vw, 36px);
+      font-size: clamp(26px, 5vw, 36px);
       line-height: 1.15;
       color: var(--text);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
-    .hero-line1 em {
+    .hero-h1 em {
       font-style: normal;
       color: var(--accent);
-      position: relative;
-      display: inline-block;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 1px;
     }
-    .hero-line1 em::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -3px;
-      width: 100%;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-    .hero-line2 {
-      font-family: var(--font-body);
-      font-style: italic;
-      font-size: clamp(15px, 3vw, 18px);
-      color: var(--muted);
-    }
-
-    /* ── REASSURANCE ── */
-    .reassurance {
-      display: flex;
-      background: #1A2A28;
-      padding: 14px 20px;
-    }
-    .reassurance-item {
-      flex: 1;
-      text-align: center;
+    .hero-sub {
       font-family: var(--font-title);
       font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-      color: #fff;
-    }
-    .reassurance-item + .reassurance-item {
-      border-left: 1px solid rgba(255,255,255,0.15);
-    }
-
-    /* ── MOMENTS ── */
-    .moments {
-      padding: 28px 20px 40px;
-      flex: 1;
-    }
-    .moments-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      max-width: 640px;
-      margin: 0 auto;
+      font-size: clamp(16px, 3vw, 20px);
+      color: var(--text);
+      letter-spacing: -0.2px;
+      line-height: 1.3;
     }
 
     /* ── CARTES ── */
+    .cards {
+      padding: 0 32px 16px;
+      flex: 1;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
     .card {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 14px;
       background: var(--card);
       border: 1.5px solid var(--border);
       border-left-width: 4px;
       border-radius: var(--radius);
-      padding: 20px 16px;
-      cursor: pointer;
-      transition: transform 0.18s ease, border-color 0.18s ease;
+      padding: 16px 18px;
       text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      cursor: pointer;
     }
     .card:hover { transform: translateY(-2px); }
     .card:hover .card-arrow { transform: translateX(3px); }
@@ -178,40 +151,37 @@
     }
 
     .card-icon {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      flex-shrink: 0;
     }
+    .card-body { flex: 1; min-width: 0; }
     .card-name {
       font-family: var(--font-title);
       font-weight: 700;
       font-size: 13px;
       color: var(--text);
       line-height: 1.3;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
     .card-name .kw { font-weight: 800; }
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 8px;
-    }
     .card-desc {
       font-family: var(--font-body);
-      font-style: italic;
       font-size: 11px;
       color: var(--muted);
       line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .card-arrow {
-      font-size: 16px;
-      transition: transform 0.18s ease;
+      font-size: 15px;
       flex-shrink: 0;
+      transition: transform 0.18s ease;
     }
 
     /* Emploi — Crimson */
@@ -238,16 +208,48 @@
     .card--exterieur .kw          { color: #1D6B5F; }
     .card--exterieur .card-arrow  { color: #1D6B5F; }
 
+    /* ── RÉASSURANCE ── */
+    .reassurance {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      padding: 20px 32px 36px;
+      flex-wrap: wrap;
+    }
+    .reassurance-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-title);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .reassurance-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .reassurance-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+    }
+
     /* ── FOOTER ── */
     .footer {
       background: var(--card);
       border-top: 1px solid var(--border);
-      padding: 16px 24px;
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 8px;
     }
     .footer-left {
       display: flex;
@@ -259,7 +261,6 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      text-decoration: none;
     }
     .footer-wordmark {
       font-family: var(--font-title);
@@ -283,10 +284,13 @@
     .footer-legal:hover { color: var(--text); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 400px) {
-      .moments-grid { grid-template-columns: 1fr; }
-      .hero { padding: 40px 16px 28px; }
-      .moments { padding: 20px 16px 32px; }
+    @media (max-width: 480px) {
+      .nav        { padding: 12px 16px; }
+      .hero       { padding: 40px 16px 32px; }
+      .cards      { padding: 0 16px 12px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .reassurance { padding: 16px 16px 28px; gap: 16px; }
+      .footer     { padding: 12px 16px; }
     }
   </style>
 </head>
@@ -295,10 +299,10 @@
   <!-- NAV -->
   <nav class="nav" aria-label="Navigation principale">
     <a href="/" class="nav-logo" aria-label="localmagnet — accueil">
-      <svg width="26" height="32" viewBox="0 0 26 32" fill="none" aria-hidden="true">
-        <circle cx="13" cy="12" r="10" stroke="#C96B45" stroke-width="3.2" fill="none"/>
-        <circle cx="13" cy="12" r="4" fill="#C96B45"/>
-        <path d="M9.5 21L13 31L16.5 21" fill="#C96B45"/>
+      <svg width="24" height="30" viewBox="0 0 24 30" fill="none" aria-hidden="true">
+        <circle cx="12" cy="11" r="9" stroke="#C96B45" stroke-width="3" fill="none"/>
+        <circle cx="12" cy="11" r="3.8" fill="#C96B45"/>
+        <path d="M8.5 19.5L12 29L15.5 19.5" fill="#C96B45"/>
       </svg>
       <span class="nav-wordmark">local<span>magnet</span></span>
     </a>
@@ -310,86 +314,97 @@
 
   <!-- HERO -->
   <header class="hero">
-    <h1 class="hero-line1">Trouvez les bons pros en <em>Sud-Mayenne.</em></h1>
-    <p class="hero-line2">Sans perdre de temps. Sans vous tromper.</p>
+    <h1 class="hero-h1">Trouvez les bons pros en <em>Sud-Mayenne.</em></h1>
+    <p class="hero-sub">Sans perdre de temps. Sans vous tromper.</p>
   </header>
 
-  <!-- RÉASSURANCE -->
-  <div class="reassurance" role="list" aria-label="Nos engagements">
-    <div class="reassurance-item" role="listitem">100% local</div>
-    <div class="reassurance-item" role="listitem">Gratuit</div>
-    <div class="reassurance-item" role="listitem">En 2 min chrono</div>
-  </div>
-
   <!-- MOMENTS DE VIE -->
-  <main class="moments">
-    <div class="moments-grid">
+  <main class="cards">
+    <div class="cards-grid">
 
       <a href="/emploi/" class="card card--emploi" aria-label="Je cherche un emploi en Mayenne">
         <div class="card-icon" style="background:#FDF0F2;" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
             <circle cx="10" cy="7" r="4" stroke="#E8304A" stroke-width="1.5" fill="none"/>
             <path d="M3 18c0-4.4 3.1-8 7-8s7 3.6 7 8" stroke="#E8304A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
           </svg>
         </div>
-        <p class="card-name">Je cherche un <span class="kw">emploi</span></p>
-        <div class="card-footer">
-          <span class="card-desc">Offres en Mayenne, sans CV</span>
-          <span class="card-arrow" aria-hidden="true">→</span>
+        <div class="card-body">
+          <p class="card-name">Je cherche un <span class="kw">emploi</span></p>
+          <p class="card-desc">Offres en Mayenne, sans CV</p>
         </div>
+        <span class="card-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a href="/mariage/" class="card card--mariage" aria-label="Je me marie — trouver des prestataires mariage en Mayenne">
+      <a href="/mariage/" class="card card--mariage" aria-label="Je me marie — prestataires mariage en Mayenne">
         <div class="card-icon" style="background:#FDF0F5;" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
             <path d="M10 17S2 12.5 2 7.5a6 6 0 0112 0 6 6 0 0112 0C26 12.5 10 17 10 17z" stroke="#8B4D6E" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
           </svg>
         </div>
-        <p class="card-name">Je me <span class="kw">marie</span></p>
-        <div class="card-footer">
-          <span class="card-desc">Wedding planner, traiteur, DJ…</span>
-          <span class="card-arrow" aria-hidden="true">→</span>
+        <div class="card-body">
+          <p class="card-name">Je me <span class="kw">marie</span></p>
+          <p class="card-desc">Wedding planner, traiteur, DJ…</p>
         </div>
+        <span class="card-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a href="/travaux/" class="card card--maison" aria-label="Je rénove ma maison — trouver des artisans en Mayenne">
+      <a href="/travaux/" class="card card--maison" aria-label="Je rénove ma maison — artisans en Mayenne">
         <div class="card-icon" style="background:#E8ECF0;" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
             <rect x="2" y="10" width="16" height="8" rx="1.5" stroke="#2C3E50" stroke-width="1.5" fill="none"/>
             <path d="M1 10l9-8 9 8" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <p class="card-name">Je rénove ma <span class="kw">maison</span></p>
-        <div class="card-footer">
-          <span class="card-desc">Cuisine, salle de bain, façade…</span>
-          <span class="card-arrow" aria-hidden="true">→</span>
+        <div class="card-body">
+          <p class="card-name">Je rénove ma <span class="kw">maison</span></p>
+          <p class="card-desc">Cuisine, salle de bain, façade…</p>
         </div>
+        <span class="card-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a href="/exterieur/" class="card card--exterieur" aria-label="J'aménage mon extérieur — trouver des professionnels en Mayenne">
+      <a href="/exterieur/" class="card card--exterieur" aria-label="J'aménage mon extérieur — professionnels en Mayenne">
         <div class="card-icon" style="background:#E8F4F1;" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
             <path d="M10 3C6.7 3 4 5.7 4 9s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c.6 0 1.2.2 1.7.5L6 11.2A4 4 0 0110 5zm0 8a4 4 0 01-3.5-5.9l5.9-5.9A4 4 0 0110 13z" fill="#1D6B5F"/>
           </svg>
         </div>
-        <p class="card-name">J'aménage mon <span class="kw">extérieur</span></p>
-        <div class="card-footer">
-          <span class="card-desc">Piscine, terrasse, jardin…</span>
-          <span class="card-arrow" aria-hidden="true">→</span>
+        <div class="card-body">
+          <p class="card-name">J'aménage mon <span class="kw">extérieur</span></p>
+          <p class="card-desc">Piscine, terrasse, jardin…</p>
         </div>
+        <span class="card-arrow" aria-hidden="true">→</span>
       </a>
 
     </div>
   </main>
 
+  <!-- RÉASSURANCE -->
+  <div class="reassurance" role="list" aria-label="Nos engagements">
+    <div class="reassurance-tag" role="listitem">
+      <div class="reassurance-dot"></div>
+      100% local
+    </div>
+    <div class="reassurance-sep" aria-hidden="true"></div>
+    <div class="reassurance-tag" role="listitem">
+      <div class="reassurance-dot"></div>
+      Gratuit
+    </div>
+    <div class="reassurance-sep" aria-hidden="true"></div>
+    <div class="reassurance-tag" role="listitem">
+      <div class="reassurance-dot"></div>
+      En 2 min chrono
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-left">
       <a href="/" class="footer-logo" aria-label="localmagnet — retour accueil">
-        <svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true">
-          <circle cx="9" cy="8" r="7" stroke="#C96B45" stroke-width="2.2" fill="none"/>
-          <circle cx="9" cy="8" r="2.8" fill="#C96B45"/>
-          <path d="M6.5 14L9 21L11.5 14" fill="#C96B45"/>
+        <svg width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true">
+          <circle cx="8" cy="7" r="6" stroke="#C96B45" stroke-width="2" fill="none"/>
+          <circle cx="8" cy="7" r="2.5" fill="#C96B45"/>
+          <path d="M5.5 12L8 19L10.5 12" fill="#C96B45"/>
         </svg>
         <span class="footer-wordmark">local<span>magnet</span></span>
       </a>
